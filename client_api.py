@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from thrift import Thrift	
-#from thrift.transport import TSocket  
 from thrift.transport import TTransport  
 from thrift.protocol import TBinaryProtocol  
 from thrift.transport import THttpClient 
@@ -12,28 +11,16 @@ sys.setdefaultencoding('utf8')
 sys.path.append('D:/thrift/gen-py')  
 import ttypes
 import UserService
-import traceback
 import logging
-import unittest
-import HTMLTestRunner
 import assertpy
-from config import *
+from config import conf_sys
 
 
+class client_api_(conf_sys):
 
-class client(unittest.TestCase,conf):
+#log = open(time.strftime('%Y-%m-%d',time.localtime(time.time()))+".txt",'wb')
 
-
-	def setUp(self):
-		transport = self.transport
-		transport.open()
-
-	def teardown(self):
-		transport = self.transport
-		transport.close()
-
-
-	def test_001_login(self):
+	def login(self):
 		#main
 
 		client = self.client
@@ -52,22 +39,13 @@ class client(unittest.TestCase,conf):
 				raise TypeError('HealthServiceException')
 
 
-	def test_002_findXKAccountByProofNum(self):
+	def findXKAccountByProofNum(self,idfy):
 		#need device
 		client = self.client
-		try:
-			assert client.findXKAccountByProofNum("210103199007141514").userId is not None
-		except BaseException , ex :
-			print ex
-			e = str(ex)
-			try:
-				assertpy.assert_that(e).contains('HealthServiceException')
-			except:
-				raise TypeError('Network Error')
-			else:
-				raise TypeError('HealthServiceException')
+		return client.findXKAccountByProofNum(idfy).userId
+		
 
-	def test_003_checkBindstate(self):
+	def checkBindstate(self):
 		#branch
 		client = self.client
 		
@@ -83,7 +61,7 @@ class client(unittest.TestCase,conf):
 			else:
 				raise TypeError('HealthServiceException')
 
-	def test_004_registerAccount(self):
+	def registerAccount(self):
 		#branch
 
 		client = self.client
@@ -102,25 +80,13 @@ class client(unittest.TestCase,conf):
 				raise TypeError('HealthServiceException')
 
 
-	def test_005_registerAndBindAccount(self):
-		#main or need device
+	def registerAndBindAccount(self,mac):
+		#need device
 
 		client = self.client
-		mif = self.mif
-		
-		try:
-			assert client.registerAndBindAccount(mif,"awifidc:44:27:96:e9:ea","") is not None
-		except BaseException , ex :
-			print ex
-			e = str(ex)
-			try:
-				assertpy.assert_that(e).contains('HealthServiceException')
-			except:
-				raise TypeError('Network Error')
-			else:
-				raise TypeError('HealthServiceException')
+		return client.registerAndBindAccount(self.mif,mac,"")
 
-	def test_006_updateAccount(self):
+	def updateAccount(self):
 		#main
 
 		client = self.client
@@ -138,7 +104,7 @@ class client(unittest.TestCase,conf):
 			else:
 				raise TypeError('HealthServiceException')
 
-	def test_007_editPassword(self):
+	def editPassword(self):
 		#branch and need device
 
 		client = self.client
@@ -155,19 +121,19 @@ class client(unittest.TestCase,conf):
 			else:
 				raise TypeError('HealthServiceException')
 
-	def test_008_getMembers(self):
+	def getMembers(self):
 		#branch
 		pass
 
-	def test_009_addMember(self):
+	def addMember(self):
 		#branch
 		pass
 
-	def test_010_deleteMembers(self):
+	def deleteMembers(self):
 		#branch
 		pass
 
-	def test_011_getCaregiverInfoService(self):
+	def getCaregiverInfoService(self):
 		#branch
 
 		client = self.client
@@ -184,24 +150,13 @@ class client(unittest.TestCase,conf):
 			else:
 				raise TypeError('HealthServiceException')
 
-	def test_012_bindDeviceByUserName(self):
+	def bindDeviceByUserName(self,accountName,password,deviceId):
 		#need device
 
 		client = self.client
-		
-		try:
-			assert client.bindDeviceByUserName('15040344536','123456','awifidc:44:27:96:e9:ea') is not None
-		except BaseException , ex :
-			print ex
-			e = str(ex)
-			try:
-				assertpy.assert_that(e).contains('HealthServiceException')
-			except:
-				raise TypeError('Network Error')
-			else:
-				raise TypeError('HealthServiceException')
+		return client.bindDeviceByUserName(accountName,password,deviceId)
 
-	def test_013_bindDeviceByUserId(self):
+	def bindDeviceByUserId(self):
 		#branch
 
 		client = self.client
@@ -218,23 +173,12 @@ class client(unittest.TestCase,conf):
 			else:
 				raise TypeError('HealthServiceException')
 
-	def test_014_getAccountInfosByDeviceId(self):
+	def getAccountInfosByDeviceId(self,mac):
 		#main or need device
 		client = self.client
-		
-		try:
-			assert client.getAccountInfosByDeviceId('awifidc:44:27:96:e9:ea') is not None
-		except BaseException , ex :
-			print ex
-			e = str(ex)
-			try:
-				assertpy.assert_that(e).contains('HealthServiceException')
-			except:
-				raise TypeError('Network Error')
-			else:
-				raise TypeError('HealthServiceException')
+		return client.getAccountInfosByDeviceId(mac)
 
-	def test_015_deleteAccountsByDeviceId(self):
+	def deleteAccountsByDeviceId(self):
 		#branch
 		
 		try:
@@ -248,8 +192,8 @@ class client(unittest.TestCase,conf):
 				raise TypeError('Network Error')
 			else:
 				raise TypeError('HealthServiceException')	
-	
-	def test_016_getFamilyInfosByUserId(self):
+
+	def getFamilyInfosByUserId(self):
 		#branch
 
 		try:
@@ -265,7 +209,7 @@ class client(unittest.TestCase,conf):
 				raise TypeError('HealthServiceException')
 
 
-	def test_017_getVerifyCodeByDeviceId(self):
+	def getVerifyCodeByDeviceId(self):
 		#branch
 		
 		try:
@@ -280,29 +224,29 @@ class client(unittest.TestCase,conf):
 			else:
 				raise TypeError('HealthServiceException')
 
-	def test_018_sendSmsVerifyCode(self):
+	def sendSmsVerifyCode(self):
 		#branch
 		pass
 
-	def test_019_validateSmsVerifyCode(self):
+	def validateSmsVerifyCode(self):
 		#branch
 		pass
 
-	def test_020_resetPassword(self):
+	def resetPassword(self):
 		#branch
 		pass
 
-	def test_021_bindDeviceByFamilyId(self):
+	def bindDeviceByFamilyId(self):
 		#branch
 		pass
 		
 
-	def test_022_unBindDeviceByFamilyId(self):
+	def unBindDeviceByFamilyId(self):
 		#branch
 		pass
 
 
-	def test_023_getDoctorInfoService(self):
+	def getDoctorInfoService(self):
 		#branch
 		cgi = self.cii
 		
@@ -319,23 +263,13 @@ class client(unittest.TestCase,conf):
 				raise TypeError('HealthServiceException')
 
 
-	def test_024_getDoctorInfoByDeviceID(self):
-		#main or need device
+	def getDoctorInfoByDeviceID(self,mac):
+		#need device
 		mdr = self.mdr
-		
-		try:
-			assert [self.client.getDoctorInfoByDeviceID('awifidc:44:27:96:e9:ea')] is not None
-		except BaseException , ex :
-			print ex
-			e = str(ex)
-			try:
-				assertpy.assert_that(e).contains('HealthServiceException')
-			except:
-				raise TypeError('Network Error')
-			else:
-				raise TypeError('HealthServiceException')
+		return [self.client.getDoctorInfoByDeviceID(mac)]
 
-	def test_025_getRecipeListByUserID(self):
+
+	def getRecipeListByUserID(self):
 		#branch
 		rif = self.rif
 		
@@ -351,43 +285,24 @@ class client(unittest.TestCase,conf):
 			else:
 				raise TypeError('HealthServiceException')
 
-	def test_026_getRecipeListByDeviceID(self):
-		#branch or need device
+	def getRecipeListByDeviceID(self,mac):
+		#need device
 		rif = self. rif
-		
-		try:
-			assert [self.client.getRecipeListByDeviceID('awifidc:44:27:96:e9:ea','0')] is not None
-		except BaseException , ex :
-			print ex
-			e = str(ex)
-			try:
-				assertpy.assert_that(e).contains('HealthServiceException')
-			except:
-				raise TypeError('Network Error')
-			else:
-				raise TypeError('HealthServiceException')
+		return [self.client.getRecipeListByDeviceID(mac,'0')]
 
-	def test_027_getphotoBydeviceID(self):
-		#branch or need device
+
+	def getphotoBydeviceID(self,mac):
+		#need device
 		
 		pif = self.pif
-		try:
-			assert [self.client.getphotoBydeviceID('awifidc:44:27:96:e9:ea','0')] is not None
-		except BaseException , ex :
-			print ex
-			e = str(ex)
-			try:
-				assertpy.assert_that(e).contains('HealthServiceException')
-			except:
-				raise TypeError('Network Error')
-			else:
-				raise TypeError('HealthServiceException')
+		return [self.client.getphotoBydeviceID(mac,'0')]
 
-	def test_028_getphotoInfoByurl(self):
+
+	def getphotoInfoByurl(self):
 		#branch
 		pass
 
-	def test_029_getUserNameByUserID(self):
+	def getUserNameByUserID(self):
 		#branch
 		
 		try:
@@ -402,45 +317,25 @@ class client(unittest.TestCase,conf):
 			else:
 				raise TypeError('HealthServiceException')
 
-	def test_030_checkBindStateByDeviceID(self):
-		#main or need device
-		
-		try:
-			assert [self.client.checkBindStateByDeviceID('awifidc:44:27:96:e9:ea')] is not None
-		except BaseException , ex :
-			print ex
-			e = str(ex)
-			try:
-				assertpy.assert_that(e).contains('HealthServiceException')
-			except:
-				raise TypeError('Network Error')
-			else:
-				raise TypeError('HealthServiceException')
+	def checkBindStateByDeviceID(self):
+		#need device
+		return [self.client.checkBindStateByDeviceID('awifidc:44:27:96:e9:ea')]
 
-	def test_031_messageNotify(self):
+
+	def messageNotify(self):
 		#branch
 		pass
 
-	def test_032_getOutsideListByDeviceId(self):
-		#main or need device
-		
-		try:
-			assert [self.client.getOutsideListByDeviceId('awifidc:44:27:96:e9:ea')] is not None
-		except BaseException , ex :
-			print ex
-			e = str(ex)
-			try:
-				assertpy.assert_that(e).contains('HealthServiceException')
-			except:
-				raise TypeError('Network Error')
-			else:
-				raise TypeError('HealthServiceException')
+	def getOutsideListByDeviceId(self):
+		#need device
+		return [self.client.getOutsideListByDeviceId('awifidc:44:27:96:e9:ea')]
 
-	def test_033_hostlogin(self):
+
+	def hostlogin(self):
 		#branch
 		pass
 
-	def test_034_getAllServices(self):
+	def getAllServices(self):
 		#main or need device
 		
 		try:
@@ -456,7 +351,7 @@ class client(unittest.TestCase,conf):
 				raise TypeError('HealthServiceException')
 
 
-	def test_035_getUsingServices(self):
+	def getUsingServices(self):
 		#main or need device
 		
 		try:
@@ -471,19 +366,19 @@ class client(unittest.TestCase,conf):
 			else:
 				raise TypeError('HealthServiceException')
 
-	def test_036_addOutside(self):
+	def addOutside(self):
 		#branch
 		pass
 
-	def test_037_getServiceRecords(self):
+	def getServiceRecords(self):
 		#branch
 		pass
 
-	def test_038_getServiceHistory(self):
+	def getServiceHistory(self):
 		#branch
 		pass
 
-	def test_039_getFamilyPoints(self):
+	def getFamilyPoints(self):
 		#main or need device
 		
 		try:
@@ -498,7 +393,7 @@ class client(unittest.TestCase,conf):
 			else:
 				raise TypeError('HealthServiceException')
 
-	def test_040_getPointsHistory(self):
+	def getPointsHistory(self):
 		#main or need device
 		
 		try:
@@ -513,11 +408,11 @@ class client(unittest.TestCase,conf):
 			else:
 				raise TypeError('HealthServiceException')
 
-	def test_041_updateServiceRecords(self):
+	def updateServiceRecords(self):
 		#branch
 		pass
 
-	def test_042_getHealthReportLists(self):
+	def getHealthReportLists(self):
 		#branch
 		
 		try:
@@ -532,26 +427,16 @@ class client(unittest.TestCase,conf):
 			else:
 				raise TypeError('HealthServiceException')
 
-	def test_043_getHealthReportListsByFamilyId(self):
+	def getHealthReportListsByFamilyId(self):
 		#branch
 		pass
 
-	def test_044_getNewRecipeListByUserID(self):
+	def getNewRecipeListByUserID(self,userid):
 		#need device
+		return [self.client.getNewRecipeListByUserID('awifidc:44:27:96:e9:ea','0',userid)]
 		
-		try:
-			assert [self.client.getNewRecipeListByUserID('awifidc:44:27:96:e9:ea','0','1516090125')] is not None
-		except BaseException , ex :
-			print ex
-			e = str(ex)
-			try:
-				assertpy.assert_that(e).contains('HealthServiceException')
-			except:
-				raise TypeError('Network Error')
-			else:
-				raise TypeError('HealthServiceException')
 
-	def test_045_getNewphotoBydeviceID(self):
+	def getNewphotoBydeviceID(self):
 		#need device
 		
 		try:
@@ -566,7 +451,7 @@ class client(unittest.TestCase,conf):
 			else:
 				raise TypeError('HealthServiceException')
 
-	def test_046_serviceCardGetUserPoints(self):
+	def serviceCardGetUserPoints(self):
 		#branch
 		
 		try:
@@ -581,7 +466,7 @@ class client(unittest.TestCase,conf):
 			else:
 				raise TypeError('HealthServiceException')
 
-	def test_047_serviceCardGetPointsHistory(self):
+	def serviceCardGetPointsHistory(self):
 		#branch
 		
 		try:
@@ -596,7 +481,7 @@ class client(unittest.TestCase,conf):
 			else:
 				raise TypeError('HealthServiceException')
 
-	def test_048_serviceCardLoginByCardNum(self):
+	def serviceCardLoginByCardNum(self):
 		#need device
 		a = self.a
 		
@@ -612,7 +497,7 @@ class client(unittest.TestCase,conf):
 			else:
 				raise TypeError('HealthServiceException')
 
-	def test_49_serviceCardLoginByAccount(self):
+	def serviceCardLoginByAccount(self):
 		#main
 		a = self.a
 		
@@ -628,7 +513,7 @@ class client(unittest.TestCase,conf):
 			else:
 				raise TypeError('HealthServiceException')
 
-	def test_050_BindCardToPerson(self):
+	def BindCardToPerson(self):
 		#branch and need device
 		
 		try:
@@ -643,8 +528,8 @@ class client(unittest.TestCase,conf):
 			else:
 				raise TypeError('HealthServiceException')
 
-	def test_051_getPurchasedServices(self):
-		#main or need device
+	def getPurchasedServices(self):
+		#main
 		try:
 			assert [self.client.getPurchasedServices('awifidc:44:27:96:e9:ea')] is not None
 		except BaseException , ex :
@@ -657,11 +542,11 @@ class client(unittest.TestCase,conf):
 			else:
 				raise TypeError('HealthServiceException')
 
-	def test_052_getPushMessage(self):
+	def getPushMessage(self):
 		#branch
 		pass
 
-	def test_053_getHealthControllerPlan(self):
+	def getHealthControllerPlan(self):
 		#branch
 		
 		try:
@@ -676,7 +561,7 @@ class client(unittest.TestCase,conf):
 			else:
 				raise TypeError('HealthServiceException')
 
-	def test_054_getHealthControllerRemindByMember(self):
+	def getHealthControllerRemindByMember(self):
 		#branch
 		
 		try:
@@ -691,8 +576,8 @@ class client(unittest.TestCase,conf):
 			else:
 				raise TypeError('HealthServiceException')
 
-	def test_055_getHealthControllerRemindByDeviceId(self):
-		#main or need device
+	def getHealthControllerRemindByDeviceId(self):
+		#main
 		
 		try:
 			assert [self.client.getHealthControllerRemindByDeviceId('awifidc:44:27:96:e9:ea')] is not None
@@ -706,8 +591,8 @@ class client(unittest.TestCase,conf):
 			else:
 				raise TypeError('HealthServiceException')
 
-	def test_056_getHealthControllerRemindByDevice(self):
-		#main or need device
+	def getHealthControllerRemindByDevice(self):
+		#main
 		
 		try:
 			assert [self.client.getHealthControllerRemindByDevice('awifidc:44:27:96:e9:ea')] is not None
@@ -721,8 +606,8 @@ class client(unittest.TestCase,conf):
 			else:
 				raise TypeError('HealthServiceException')
 
-	def test_057_sendMessageToManager(self):
-		#main or need device
+	def sendMessageToManager(self):
+		#main
 		a = self.a
 		
 		try:
@@ -737,7 +622,7 @@ class client(unittest.TestCase,conf):
 			else:
 				raise TypeError('HealthServiceException')
 
-	def test_058_serviceLoginByProofNum(self):
+	def serviceLoginByProofNum(self):
 		#need device
 		
 		try:
@@ -752,15 +637,15 @@ class client(unittest.TestCase,conf):
 			else:
 				raise TypeError('HealthServiceException')
 
-	def test_059_getCallDoctor(self):
+	def getCallDoctor(self):
 		#branch
 		pass
 
-	def test_060_saveInterfaceLog(self):
+	def saveInterfaceLog(self):
 		#branch
 		pass
 
-	def test_061_getPeripheralConfigureList(self):
+	def getPeripheralConfigureList(self):
 		#main
 		
 		try:
@@ -775,7 +660,7 @@ class client(unittest.TestCase,conf):
 			else:
 				raise TypeError('HealthServiceException')
 
-	def test_062_getMemberHealthInfo(self):
+	def getMemberHealthInfo(self):
 		#branch
 		
 		try:
@@ -790,17 +675,10 @@ class client(unittest.TestCase,conf):
 			else:
 				raise TypeError('HealthServiceException')
 
-	def test_063_updateMemeberHealthInfo(self):
+	def updateMemeberHealthInfo(self):
 		#branch
 		pass
 
-
 if __name__ == "__main__":
-
-	#suite = unittest.TestLoader().loadTestsFromTestCase(client)
-	#unittest.TextTestRunner(verbosity=2).run(suite)
-	suite = unittest.makeSuite(client) #运行类下面的test所有用例
-	#suite = unittest.defaultTestLoader.discover('.','unit*.py') #运行当前目录下，以unit开头的所有用例
-	fr = open(localaddr,'wb')
-	runner = HTMLTestRunner.HTMLTestRunner(stream=fr,title='测试报告',description='测试报告详情')
-	runner.run(suite)
+	a = client_api_()
+	print a.findXKAccountByProofNum('210103199007141514')

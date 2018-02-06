@@ -65,7 +65,7 @@ class conf_param(object):
 	shorpassword = '12345'
 	mixpassword = '1q[ ]#；（）'
 
-	deviceId = 'awifidc:44:27:96:e9:ea'
+	deviceId = 'awifi44:2c:05:4a:72:5d'
 	londeviceId = 'awifidc:44:27:96:e9:ea:12'
 	shordeviceId = 'awifidc:44:27:96:e9'
 	mixdeviceId = 'awifidc:44:27:96:e9:[]'
@@ -77,11 +77,12 @@ class conf_param(object):
 	symcardid = '66660024900[ ]（）'
 	#健康卡号
 
-	accountName = '15160901251'
+	accountName = '13500009876'
 	lonaccountName = '1516090125123'
 	shoraccountName = '1516090125'
 	mixaccountName = '15160901qs你好'
-	sydeviceIdcountName = '15160901[ ]（）'
+	symaccountName = '15160901[ ]（）'
+
 
 
 	def error(self,ex):
@@ -95,9 +96,19 @@ class conf_param(object):
 				print ex.message
 				raise TypeError('ICE Error')
 			else:
+				print ex.message
 				raise TypeError('HTTP ERROR')
 		else:
 			print(e)
+
+	def getPhrcode(self,accountName):
+		phr = conf_sys().client.findPersonPhrCodeByUniquerHealthInfo(accountName,0)
+		return phr
+
+	def getfamilyid(self,phr):
+		familyid = conf_sys().client.getFamilyInfosByUserId(phr)
+		return familyid
+
 
 
 

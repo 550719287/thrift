@@ -46,7 +46,7 @@ class client_api_(conf_sys):
 		
 
 	def checkBindstate(self):
-		#branch
+		#branchmac
 		client = self.client
 		
 		try:
@@ -62,7 +62,7 @@ class client_api_(conf_sys):
 				raise TypeError('HealthServiceException')
 
 	def registerAccount(self):
-		#branch
+		#main
 
 		client = self.client
 		mif = self.mif
@@ -104,51 +104,34 @@ class client_api_(conf_sys):
 			else:
 				raise TypeError('HealthServiceException')
 
-	def editPassword(self):
+	def editPassword(self,phr,psd1,psd2):
 		#branch and need device
 
 		client = self.client
+		return client.editPassword(phr,psd1,psd2)
 		
-		try:
-			assert client.editPassword('M5A1CFEDBE4B09F03008C774D','123456','123456') is not None
-		except BaseException , ex :
-			print ex
-			e = str(ex)
-			try:
-				assertpy.assert_that(e).contains('HealthServiceException')
-			except:
-				raise TypeError('Network Error')
-			else:
-				raise TypeError('HealthServiceException')
 
 	def getMembers(self):
 		#branch
+		#error
 		pass
 
 	def addMember(self):
 		#branch
+		#error
 		pass
 
 	def deleteMembers(self):
 		#branch
+		#error
 		pass
 
-	def getCaregiverInfoService(self):
+	def getCaregiverInfoService(self,phr,mac):
 		#branch
+		#error
 
 		client = self.client
-		
-		try:
-			assert client.getCaregiverInfoService('M5A1CFEDBE4B09F03008C774D','awifidc:44:27:96:e9:ea') is not None
-		except BaseException , ex :
-			print ex
-			e = str(ex)
-			try:
-				assertpy.assert_that(e).contains('HealthServiceException')
-			except:
-				raise TypeError('Network Error')
-			else:
-				raise TypeError('HealthServiceException')
+		return client.getCaregiverInfoService(phr,mac)
 
 	def bindDeviceByUserName(self,accountName,password,deviceId):
 		#need device
@@ -156,77 +139,37 @@ class client_api_(conf_sys):
 		client = self.client
 		return client.bindDeviceByUserName(accountName,password,deviceId)
 
-	def bindDeviceByUserId(self):
+	def bindDeviceByUserId(self,phr,mac):
 		#branch
 
 		client = self.client
+		return client.bindDeviceByUserId(phr,mac)
 		
-		try:
-			assert client.bindDeviceByUserId('M5A1CFEDBE4B09F03008C774D','awifidc:44:27:96:e9:ea') is not None
-		except BaseException , ex :
-			print ex
-			e = str(ex)
-			try:
-				assertpy.assert_that(e).contains('HealthServiceException')
-			except:
-				raise TypeError('Network Error')
-			else:
-				raise TypeError('HealthServiceException')
 
 	def getAccountInfosByDeviceId(self,mac):
 		#main or need device
 		client = self.client
 		return client.getAccountInfosByDeviceId(mac)
 
-	def deleteAccountsByDeviceId(self):
+	def deleteAccountsByDeviceId(self,phr,mac):
 		#branch
+		return self.client.deleteAccountsByDeviceId(phr,mac)
 		
-		try:
-			assert self.client.deleteAccountsByDeviceId('M5A1CFEDBE4B09F03008C774D','awifidc:44:27:96:e9:ea') is not None
-		except BaseException , ex :
-			print ex
-			e = str(ex)
-			try:
-				assertpy.assert_that(e).contains('HealthServiceException')
-			except:
-				raise TypeError('Network Error')
-			else:
-				raise TypeError('HealthServiceException')	
 
-	def getFamilyInfosByUserId(self):
+	def getFamilyInfosByUserId(self,phr):
 		#branch
-
-		try:
-			assert self.client.getFamilyInfosByUserId('M5A1CFEDBE4B09F03008C774D') is not None
-		except BaseException , ex :
-			print ex
-			e = str(ex)
-			try:
-				assertpy.assert_that(e).contains('HealthServiceException')
-			except:
-				raise TypeError('Network Error')
-			else:
-				raise TypeError('HealthServiceException')
-
-
-	def getVerifyCodeByDeviceId(self):
-		#branch
+		return self.client.getFamilyInfosByUserId(phr)
 		
-		try:
-			assert self.client.getVerifyCodeByDeviceId('M5A1CFEDBE4B09F03008C774D') is not None
-		except BaseException , ex :
-			print ex
-			e = str(ex)
-			try:
-				assertpy.assert_that(e).contains('HealthServiceException')
-			except:
-				raise TypeError('Network Error')
-			else:
-				raise TypeError('HealthServiceException')
 
-	def sendSmsVerifyCode(self):
+
+	def getVerifyCodeByDeviceId(self,phr):
 		#branch
-		pass
+		return self.client.getVerifyCodeByDeviceId(phr)
+		
+
+	def sendSmsVerifyCode(self,username):
+		#branch
+		return self.client.sendSmsVerifyCode()
 
 	def validateSmsVerifyCode(self):
 		#branch
@@ -236,90 +179,57 @@ class client_api_(conf_sys):
 		#branch
 		pass
 
-	def bindDeviceByFamilyId(self):
+	def bindDeviceByFamilyId(self,familyid,mac):
 		#branch
-		pass
+		return client.bindDeviceByFamilyId(familyid,mac)
 		
 
-	def unBindDeviceByFamilyId(self):
+	def unBindDeviceByFamilyId(self,familyid,mac):
 		#branch
-		pass
+		return client.unbindDeviceByFamilyId(familyid,mac)
 
 
-	def getDoctorInfoService(self):
-		#branch
+	def getDoctorInfoService(self,phr,mac):
+		#branchmac
 		cgi = self.cii
-		
-		try:
-			assert [self.client.getDoctorInfoService('M5A1CFEDBE4B09F03008C774D','awifidc:44:27:96:e9:ea')] is not None
-		except BaseException , ex :
-			print ex
-			e = str(ex)
-			try:
-				assertpy.assert_that(e).contains('HealthServiceException')
-			except:
-				raise TypeError('Network Error')
-			else:
-				raise TypeError('HealthServiceException')
+		return self.client.getDoctorInfoService(phr,mac)
 
 
 	def getDoctorInfoByDeviceID(self,mac):
 		#need device
 		mdr = self.mdr
-		return [self.client.getDoctorInfoByDeviceID(mac)]
+		return self.client.getDoctorInfoByDeviceID(mac)
 
 
-	def getRecipeListByUserID(self):
+	def getRecipeListByUserID(self,phr):
 		#branch
 		rif = self.rif
-		
-		try:
-			assert [self.client.getRecipeListByUserID('M5A1CFEDBE4B09F03008C774D','0')] is not None
-		except BaseException , ex :
-			print ex
-			e = str(ex)
-			try:
-				assertpy.assert_that(e).contains('HealthServiceException')
-			except:
-				raise TypeError('Network Error')
-			else:
-				raise TypeError('HealthServiceException')
+		return [self.client.getRecipeListByUserID(phr,'0')]
 
 	def getRecipeListByDeviceID(self,mac):
 		#need device
 		rif = self. rif
-		return [self.client.getRecipeListByDeviceID(mac,'0')]
+		return self.client.getRecipeListByDeviceID(mac,'0')
 
 
 	def getphotoBydeviceID(self,mac):
 		#need device
 		
 		pif = self.pif
-		return [self.client.getphotoBydeviceID(mac,'0')]
+		return self.client.getphotoBydeviceID(mac,'0')
 
 
-	def getphotoInfoByurl(self):
+	def getphotoInfoByurl(self,photourl):
 		#branch
-		pass
+		return self.client.getphotoInfoByurl(photourl)
 
-	def getUserNameByUserID(self):
+	def getUserNameByUserID(self,phr):
 		#branch
-		
-		try:
-			assert [self.client.getUserNameByUserID('M5A1CFEDBE4B09F03008C774D')] is not None
-		except BaseException , ex :
-			print ex
-			e = str(ex)
-			try:
-				assertpy.assert_that(e).contains('HealthServiceException')
-			except:
-				raise TypeError('Network Error')
-			else:
-				raise TypeError('HealthServiceException')
+		return self.client.getUserNameByUserID(phr)
 
 	def checkBindStateByDeviceID(self):
 		#need device
-		return [self.client.checkBindStateByDeviceID('awifidc:44:27:96:e9:ea')]
+		return self.client.checkBindStateByDeviceID('awifidc:44:27:96:e9:ea')
 
 
 	def messageNotify(self):
@@ -328,7 +238,7 @@ class client_api_(conf_sys):
 
 	def getOutsideListByDeviceId(self):
 		#need device
-		return [self.client.getOutsideListByDeviceId('awifidc:44:27:96:e9:ea')]
+		return self.client.getOutsideListByDeviceId('awifidc:44:27:96:e9:ea')
 
 
 	def hostlogin(self):
@@ -436,20 +346,9 @@ class client_api_(conf_sys):
 		return [self.client.getNewRecipeListByUserID('awifidc:44:27:96:e9:ea','0',userid)]
 		
 
-	def getNewphotoBydeviceID(self):
+	def getNewphotoBydeviceID(self,mac,username):
 		#need device
-		
-		try:
-			assert [self.client.getNewphotoBydeviceID('awifidc:44:27:96:e9:ea','0','1516090125')] is not None
-		except BaseException , ex :
-			print ex
-			e = str(ex)
-			try:
-				assertpy.assert_that(e).contains('HealthServiceException')
-			except:
-				raise TypeError('Network Error')
-			else:
-				raise TypeError('HealthServiceException')
+		return [self.client.getNewphotoBydeviceID(mac,'0',username)]
 
 	def serviceCardGetUserPoints(self):
 		#branch
@@ -481,21 +380,10 @@ class client_api_(conf_sys):
 			else:
 				raise TypeError('HealthServiceException')
 
-	def serviceCardLoginByCardNum(self):
+	def serviceCardLoginByCardNum(self,cardid):
 		#need device
 		a = self.a
-		
-		try:
-			assert self.client.serviceCardLoginByCardNum(a,'66660024900193') is not None
-		except BaseException , ex :
-			print ex
-			e = str(ex)
-			try:
-				assertpy.assert_that(e).contains('HealthServiceException')
-			except:
-				raise TypeError('Network Error')
-			else:
-				raise TypeError('HealthServiceException')
+		return self.client.serviceCardLoginByCardNum(a,cardid)
 
 	def serviceCardLoginByAccount(self):
 		#main
@@ -622,20 +510,10 @@ class client_api_(conf_sys):
 			else:
 				raise TypeError('HealthServiceException')
 
-	def serviceLoginByProofNum(self):
+	def serviceLoginByProofNum(self,mac,ide):
 		#need device
+		return self.client.serviceLoginByProofNum(ide,mac)
 		
-		try:
-			assert self.client.serviceLoginByProofNum('210103199007141514','awifidc:44:27:96:e9:ea') is not None
-		except BaseException , ex :
-			print ex
-			e = str(ex)
-			try:
-				assertpy.assert_that(e).contains('HealthServiceException')
-			except:
-				raise TypeError('Network Error')
-			else:
-				raise TypeError('HealthServiceException')
 
 	def getCallDoctor(self):
 		#branch

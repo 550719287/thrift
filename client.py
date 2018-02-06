@@ -21,7 +21,7 @@ from config import *
 
 
 
-class client(unittest.TestCase,conf):
+class client(unittest.TestCase,conf_sys):
 
 
 	def setUp(self):

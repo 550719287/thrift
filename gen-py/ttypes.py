@@ -350,6 +350,354 @@ class AccountInfo(object):
         return not (self == other)
 
 
+class AccountInfo_new(object):
+    """
+    Attributes:
+     - userId
+     - password
+     - nickName
+     - fullName
+     - registDatetime
+     - loginDatetime
+     - headPortrait
+     - cardID
+     - birthday
+     - sex
+     - email
+     - mobileNum
+     - watchId
+     - isEnable
+     - deviceId
+     - loginStatus
+     - accountName
+     - proofNum
+     - addrDetail
+     - login_token
+     - isHost
+     - role
+     - usersig
+     - headPictureUrl
+     - height
+    """
+
+    thrift_spec = (
+        None,  # 0
+        (1, TType.STRING, 'userId', 'UTF8', None, ),  # 1
+        (2, TType.STRING, 'password', 'UTF8', None, ),  # 2
+        (3, TType.STRING, 'nickName', 'UTF8', None, ),  # 3
+        (4, TType.STRING, 'fullName', 'UTF8', None, ),  # 4
+        (5, TType.STRING, 'registDatetime', 'UTF8', None, ),  # 5
+        (6, TType.STRING, 'loginDatetime', 'UTF8', None, ),  # 6
+        (7, TType.STRING, 'headPortrait', 'BINARY', None, ),  # 7
+        (8, TType.STRING, 'cardID', 'UTF8', None, ),  # 8
+        (9, TType.STRING, 'birthday', 'UTF8', None, ),  # 9
+        (10, TType.I32, 'sex', None, None, ),  # 10
+        (11, TType.STRING, 'email', 'UTF8', None, ),  # 11
+        (12, TType.STRING, 'mobileNum', 'UTF8', None, ),  # 12
+        (13, TType.STRING, 'watchId', 'UTF8', None, ),  # 13
+        (14, TType.I32, 'isEnable', None, None, ),  # 14
+        (15, TType.STRING, 'deviceId', 'UTF8', None, ),  # 15
+        (16, TType.I32, 'loginStatus', None, None, ),  # 16
+        (17, TType.STRING, 'accountName', 'UTF8', None, ),  # 17
+        (18, TType.STRING, 'proofNum', 'UTF8', None, ),  # 18
+        (19, TType.STRING, 'addrDetail', 'UTF8', None, ),  # 19
+        (20, TType.STRING, 'login_token', 'UTF8', None, ),  # 20
+        (21, TType.STRING, 'isHost', 'UTF8', None, ),  # 21
+        (22, TType.STRING, 'role', 'UTF8', None, ),  # 22
+        (23, TType.STRING, 'usersig', 'UTF8', None, ),  # 23
+        (24, TType.STRING, 'headPictureUrl', 'UTF8', None, ),  # 24
+        (25, TType.DOUBLE, 'height', None, None, ),  # 25
+    )
+
+    def __init__(self, userId=None, password=None, nickName=None, fullName=None, registDatetime=None, loginDatetime=None, headPortrait=None, cardID=None, birthday=None, sex=None, email=None, mobileNum=None, watchId=None, isEnable=None, deviceId=None, loginStatus=None, accountName=None, proofNum=None, addrDetail=None, login_token=None, isHost=None, role=None, usersig=None, headPictureUrl=None, height=None,):
+        self.userId = userId
+        self.password = password
+        self.nickName = nickName
+        self.fullName = fullName
+        self.registDatetime = registDatetime
+        self.loginDatetime = loginDatetime
+        self.headPortrait = headPortrait
+        self.cardID = cardID
+        self.birthday = birthday
+        self.sex = sex
+        self.email = email
+        self.mobileNum = mobileNum
+        self.watchId = watchId
+        self.isEnable = isEnable
+        self.deviceId = deviceId
+        self.loginStatus = loginStatus
+        self.accountName = accountName
+        self.proofNum = proofNum
+        self.addrDetail = addrDetail
+        self.login_token = login_token
+        self.isHost = isHost
+        self.role = role
+        self.usersig = usersig
+        self.headPictureUrl = headPictureUrl
+        self.height = height
+
+    def read(self, iprot):
+        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
+            iprot._fast_decode(self, iprot, (self.__class__, self.thrift_spec))
+            return
+        iprot.readStructBegin()
+        while True:
+            (fname, ftype, fid) = iprot.readFieldBegin()
+            if ftype == TType.STOP:
+                break
+            if fid == 1:
+                if ftype == TType.STRING:
+                    self.userId = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                else:
+                    iprot.skip(ftype)
+            elif fid == 2:
+                if ftype == TType.STRING:
+                    self.password = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                else:
+                    iprot.skip(ftype)
+            elif fid == 3:
+                if ftype == TType.STRING:
+                    self.nickName = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                else:
+                    iprot.skip(ftype)
+            elif fid == 4:
+                if ftype == TType.STRING:
+                    self.fullName = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                else:
+                    iprot.skip(ftype)
+            elif fid == 5:
+                if ftype == TType.STRING:
+                    self.registDatetime = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                else:
+                    iprot.skip(ftype)
+            elif fid == 6:
+                if ftype == TType.STRING:
+                    self.loginDatetime = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                else:
+                    iprot.skip(ftype)
+            elif fid == 7:
+                if ftype == TType.STRING:
+                    self.headPortrait = iprot.readBinary()
+                else:
+                    iprot.skip(ftype)
+            elif fid == 8:
+                if ftype == TType.STRING:
+                    self.cardID = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                else:
+                    iprot.skip(ftype)
+            elif fid == 9:
+                if ftype == TType.STRING:
+                    self.birthday = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                else:
+                    iprot.skip(ftype)
+            elif fid == 10:
+                if ftype == TType.I32:
+                    self.sex = iprot.readI32()
+                else:
+                    iprot.skip(ftype)
+            elif fid == 11:
+                if ftype == TType.STRING:
+                    self.email = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                else:
+                    iprot.skip(ftype)
+            elif fid == 12:
+                if ftype == TType.STRING:
+                    self.mobileNum = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                else:
+                    iprot.skip(ftype)
+            elif fid == 13:
+                if ftype == TType.STRING:
+                    self.watchId = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                else:
+                    iprot.skip(ftype)
+            elif fid == 14:
+                if ftype == TType.I32:
+                    self.isEnable = iprot.readI32()
+                else:
+                    iprot.skip(ftype)
+            elif fid == 15:
+                if ftype == TType.STRING:
+                    self.deviceId = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                else:
+                    iprot.skip(ftype)
+            elif fid == 16:
+                if ftype == TType.I32:
+                    self.loginStatus = iprot.readI32()
+                else:
+                    iprot.skip(ftype)
+            elif fid == 17:
+                if ftype == TType.STRING:
+                    self.accountName = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                else:
+                    iprot.skip(ftype)
+            elif fid == 18:
+                if ftype == TType.STRING:
+                    self.proofNum = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                else:
+                    iprot.skip(ftype)
+            elif fid == 19:
+                if ftype == TType.STRING:
+                    self.addrDetail = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                else:
+                    iprot.skip(ftype)
+            elif fid == 20:
+                if ftype == TType.STRING:
+                    self.login_token = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                else:
+                    iprot.skip(ftype)
+            elif fid == 21:
+                if ftype == TType.STRING:
+                    self.isHost = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                else:
+                    iprot.skip(ftype)
+            elif fid == 22:
+                if ftype == TType.STRING:
+                    self.role = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                else:
+                    iprot.skip(ftype)
+            elif fid == 23:
+                if ftype == TType.STRING:
+                    self.usersig = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                else:
+                    iprot.skip(ftype)
+            elif fid == 24:
+                if ftype == TType.STRING:
+                    self.headPictureUrl = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                else:
+                    iprot.skip(ftype)
+            elif fid == 25:
+                if ftype == TType.DOUBLE:
+                    self.height = iprot.readDouble()
+                else:
+                    iprot.skip(ftype)
+            else:
+                iprot.skip(ftype)
+            iprot.readFieldEnd()
+        iprot.readStructEnd()
+
+    def write(self, oprot):
+        if oprot._fast_encode is not None and self.thrift_spec is not None:
+            oprot.trans.write(oprot._fast_encode(self, (self.__class__, self.thrift_spec)))
+            return
+        oprot.writeStructBegin('AccountInfo_new')
+        if self.userId is not None:
+            oprot.writeFieldBegin('userId', TType.STRING, 1)
+            oprot.writeString(self.userId.encode('utf-8') if sys.version_info[0] == 2 else self.userId)
+            oprot.writeFieldEnd()
+        if self.password is not None:
+            oprot.writeFieldBegin('password', TType.STRING, 2)
+            oprot.writeString(self.password.encode('utf-8') if sys.version_info[0] == 2 else self.password)
+            oprot.writeFieldEnd()
+        if self.nickName is not None:
+            oprot.writeFieldBegin('nickName', TType.STRING, 3)
+            oprot.writeString(self.nickName.encode('utf-8') if sys.version_info[0] == 2 else self.nickName)
+            oprot.writeFieldEnd()
+        if self.fullName is not None:
+            oprot.writeFieldBegin('fullName', TType.STRING, 4)
+            oprot.writeString(self.fullName.encode('utf-8') if sys.version_info[0] == 2 else self.fullName)
+            oprot.writeFieldEnd()
+        if self.registDatetime is not None:
+            oprot.writeFieldBegin('registDatetime', TType.STRING, 5)
+            oprot.writeString(self.registDatetime.encode('utf-8') if sys.version_info[0] == 2 else self.registDatetime)
+            oprot.writeFieldEnd()
+        if self.loginDatetime is not None:
+            oprot.writeFieldBegin('loginDatetime', TType.STRING, 6)
+            oprot.writeString(self.loginDatetime.encode('utf-8') if sys.version_info[0] == 2 else self.loginDatetime)
+            oprot.writeFieldEnd()
+        if self.headPortrait is not None:
+            oprot.writeFieldBegin('headPortrait', TType.STRING, 7)
+            oprot.writeBinary(self.headPortrait)
+            oprot.writeFieldEnd()
+        if self.cardID is not None:
+            oprot.writeFieldBegin('cardID', TType.STRING, 8)
+            oprot.writeString(self.cardID.encode('utf-8') if sys.version_info[0] == 2 else self.cardID)
+            oprot.writeFieldEnd()
+        if self.birthday is not None:
+            oprot.writeFieldBegin('birthday', TType.STRING, 9)
+            oprot.writeString(self.birthday.encode('utf-8') if sys.version_info[0] == 2 else self.birthday)
+            oprot.writeFieldEnd()
+        if self.sex is not None:
+            oprot.writeFieldBegin('sex', TType.I32, 10)
+            oprot.writeI32(self.sex)
+            oprot.writeFieldEnd()
+        if self.email is not None:
+            oprot.writeFieldBegin('email', TType.STRING, 11)
+            oprot.writeString(self.email.encode('utf-8') if sys.version_info[0] == 2 else self.email)
+            oprot.writeFieldEnd()
+        if self.mobileNum is not None:
+            oprot.writeFieldBegin('mobileNum', TType.STRING, 12)
+            oprot.writeString(self.mobileNum.encode('utf-8') if sys.version_info[0] == 2 else self.mobileNum)
+            oprot.writeFieldEnd()
+        if self.watchId is not None:
+            oprot.writeFieldBegin('watchId', TType.STRING, 13)
+            oprot.writeString(self.watchId.encode('utf-8') if sys.version_info[0] == 2 else self.watchId)
+            oprot.writeFieldEnd()
+        if self.isEnable is not None:
+            oprot.writeFieldBegin('isEnable', TType.I32, 14)
+            oprot.writeI32(self.isEnable)
+            oprot.writeFieldEnd()
+        if self.deviceId is not None:
+            oprot.writeFieldBegin('deviceId', TType.STRING, 15)
+            oprot.writeString(self.deviceId.encode('utf-8') if sys.version_info[0] == 2 else self.deviceId)
+            oprot.writeFieldEnd()
+        if self.loginStatus is not None:
+            oprot.writeFieldBegin('loginStatus', TType.I32, 16)
+            oprot.writeI32(self.loginStatus)
+            oprot.writeFieldEnd()
+        if self.accountName is not None:
+            oprot.writeFieldBegin('accountName', TType.STRING, 17)
+            oprot.writeString(self.accountName.encode('utf-8') if sys.version_info[0] == 2 else self.accountName)
+            oprot.writeFieldEnd()
+        if self.proofNum is not None:
+            oprot.writeFieldBegin('proofNum', TType.STRING, 18)
+            oprot.writeString(self.proofNum.encode('utf-8') if sys.version_info[0] == 2 else self.proofNum)
+            oprot.writeFieldEnd()
+        if self.addrDetail is not None:
+            oprot.writeFieldBegin('addrDetail', TType.STRING, 19)
+            oprot.writeString(self.addrDetail.encode('utf-8') if sys.version_info[0] == 2 else self.addrDetail)
+            oprot.writeFieldEnd()
+        if self.login_token is not None:
+            oprot.writeFieldBegin('login_token', TType.STRING, 20)
+            oprot.writeString(self.login_token.encode('utf-8') if sys.version_info[0] == 2 else self.login_token)
+            oprot.writeFieldEnd()
+        if self.isHost is not None:
+            oprot.writeFieldBegin('isHost', TType.STRING, 21)
+            oprot.writeString(self.isHost.encode('utf-8') if sys.version_info[0] == 2 else self.isHost)
+            oprot.writeFieldEnd()
+        if self.role is not None:
+            oprot.writeFieldBegin('role', TType.STRING, 22)
+            oprot.writeString(self.role.encode('utf-8') if sys.version_info[0] == 2 else self.role)
+            oprot.writeFieldEnd()
+        if self.usersig is not None:
+            oprot.writeFieldBegin('usersig', TType.STRING, 23)
+            oprot.writeString(self.usersig.encode('utf-8') if sys.version_info[0] == 2 else self.usersig)
+            oprot.writeFieldEnd()
+        if self.headPictureUrl is not None:
+            oprot.writeFieldBegin('headPictureUrl', TType.STRING, 24)
+            oprot.writeString(self.headPictureUrl.encode('utf-8') if sys.version_info[0] == 2 else self.headPictureUrl)
+            oprot.writeFieldEnd()
+        if self.height is not None:
+            oprot.writeFieldBegin('height', TType.DOUBLE, 25)
+            oprot.writeDouble(self.height)
+            oprot.writeFieldEnd()
+        oprot.writeFieldStop()
+        oprot.writeStructEnd()
+
+    def validate(self):
+        return
+
+    def __repr__(self):
+        L = ['%s=%r' % (key, value)
+             for key, value in self.__dict__.items()]
+        return '%s(%s)' % (self.__class__.__name__, ', '.join(L))
+
+    def __eq__(self, other):
+        return isinstance(other, self.__class__) and self.__dict__ == other.__dict__
+
+    def __ne__(self, other):
+        return not (self == other)
+
+
 class PhrHealthClinic(object):
     """
     Attributes:

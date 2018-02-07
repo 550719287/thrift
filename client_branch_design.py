@@ -22,7 +22,7 @@ from client_api import client_api_
 
 
 
-class test_findXKAccountByProofNum(unittest.TestCase,client_api_):
+class test_findXKAccountByProofNum(unittest.TestCase,conf_param):
 #findXKAccountByProofNum
 
 	def setUp(self):
@@ -37,7 +37,7 @@ class test_findXKAccountByProofNum(unittest.TestCase,client_api_):
 	def test_normal_findXKAccountByProofNum(self):
 
 		try:
-			assert self.findXKAccountByProofNum(self.identify) is not None
+			assert client_api_().findXKAccountByProofNum(self.identify).userId
 		except BaseException , ex :
 			self.error(ex)
 
@@ -46,7 +46,7 @@ class test_findXKAccountByProofNum(unittest.TestCase,client_api_):
 	def test_long_findXKAccountByProofNum(self):
 
 		try:
-			assert self.findXKAccountByProofNum(self.lonidentify) is not None
+			assert client_api_().findXKAccountByProofNum(self.lonidentify).userId is None
 		except BaseException , ex :
 			self.error(ex)
 
@@ -54,25 +54,27 @@ class test_findXKAccountByProofNum(unittest.TestCase,client_api_):
 	def test_short_findXKAccountByProofNum(self):
 
 		try:
-			assert self.self.findXKAccountByProofNum(self.shoridentify) is not None
+			assert client_api_().findXKAccountByProofNum(self.shoridentify).userId is None
 		except BaseException , ex :
 			self.error(ex)
 
 	def test_mix_findXKAccountByProofNum(self):
 
 		try:
-			assert self.findXKAccountByProofNum(self.mixidentify) is not None
+			assert client_api_().findXKAccountByProofNum(self.mixidentify).userId is None
 		except BaseException , ex :
 			self.error(ex)
 
 	def test_sym_findXKAccountByProofNum(self):
 
 		try:
-			assert self.findXKAccountByProofNum(self.symidentify) is not None
+			assert client_api_().findXKAccountByProofNum(self.symidentify).userId is None
 		except BaseException , ex :
 			self.error(ex)
 
-class test_registerAndBindAccount(unittest.TestCase,client_api_):
+
+
+class test_registerAndBindAccount(unittest.TestCase,conf_param):
 #registerAndBindAccount
 
 	def setUp(self):
@@ -85,16 +87,15 @@ class test_registerAndBindAccount(unittest.TestCase,client_api_):
 
 	def test_normal_registerAndBindAccount(self):
 
-
 		try:
-			assert self.registerAndBindAccount(self.deviceId) is not None
+			assert client_api_().registerAndBindAccount(self.deviceId) is not None
 		except BaseException , ex :
 			self.error(ex)
 
 	def test_long_registerAndBindAccount(self):
 
 		try:
-			assert self.registerAndBindAccount(self.londeviceId) is not None
+			assert client_api_().registerAndBindAccount(self.londeviceId) is not None
 		except BaseException , ex :
 			self.error(ex)
 
@@ -102,19 +103,19 @@ class test_registerAndBindAccount(unittest.TestCase,client_api_):
 	def test_short_registerAndBindAccount(self):
 
 		try:
-			assert self.registerAndBindAccount(self.shordeviceId) is not None
+			assert client_api_().registerAndBindAccount(self.shordeviceId) is not None
 		except BaseException , ex :
 			self.error(ex)
 
 	def test_mix_registerAndBindAccount(self):
 
 		try:
-			assert self.registerAndBindAccount(self.mixdeviceId) is not None
+			assert client_api_().registerAndBindAccount(self.mixdeviceId) is not None
 		except BaseException , ex :
 			self.error(ex)
 
 
-class test_bindDeviceByUserName(unittest.TestCase,client_api_):
+class test_bindDeviceByUserName(unittest.TestCase,conf_param):
 #bindDeviceByUserName
 	def setUp(self):
 		transport = conf_sys().transport
@@ -127,28 +128,28 @@ class test_bindDeviceByUserName(unittest.TestCase,client_api_):
 	def test_normal_bindDeviceByUserName(self):
 
 		try:
-			assert self.bindDeviceByUserName(self.accountName,self.password,self.deviceId) is not None
+			assert client_api_().bindDeviceByUserName(self.accountName,self.password,self.deviceId) is not None
 		except BaseException , ex :
 			self.error(ex)
 
 	def test_allwrong_bindDeviceByUserName(self):
 
 		try:
-			assert self.bindDeviceByUserName(self.lonaccountName,self.shorpassword,self.mixdeviceId) is not None
+			assert client_api_().bindDeviceByUserName(self.lonaccountName,self.shorpassword,self.mixdeviceId) is not None
 		except BaseException , ex :
 			self.error(ex)
 
 	def test_long_bindDeviceByUserName(self):
 
 		try:
-			assert self.bindDeviceByUserName(self.lonaccountName,self.password,self.deviceId) is not None
+			assert client_api_().bindDeviceByUserName(self.lonaccountName,self.password,self.deviceId) is not None
 		except BaseException , ex :
 			self.error(ex)
 
 	def test_short_bindDeviceByUserName(self):
 
 		try:
-			assert self.bindDeviceByUserName(self.shoraccountName,self.password,self.deviceId) is not None
+			assert client_api_().bindDeviceByUserName(self.shoraccountName,self.password,self.deviceId) is not None
 		except BaseException , ex :
 			self.error(ex)
 
@@ -156,14 +157,14 @@ class test_bindDeviceByUserName(unittest.TestCase,client_api_):
 	def test_mix_bindDeviceByUserName(self):
 
 		try:
-			assert self.bindDeviceByUserName(self.mixaccountName,self.password,self.deviceId) is not None
+			assert client_api_().bindDeviceByUserName(self.mixaccountName,self.password,self.deviceId) is not None
 		except BaseException , ex :
 			self.error(ex)
 
 	def test_sym_bindDeviceByUserName(self):
 
 		try:
-			assert self.bindDeviceByUserName(self.symaccountName,self.password,self.deviceId) is not None
+			assert client_api_().bindDeviceByUserName(self.symaccountName,self.password,self.deviceId) is not None
 		except BaseException , ex :
 			self.error(ex)
 
@@ -172,30 +173,24 @@ class test_bindDeviceByUserName(unittest.TestCase,client_api_):
 	def test_longpsd_bindDeviceByUserName(self):
 
 		try:
-			assert self.bindDeviceByUserName(self.accountName,self.lonpassword,self.deviceId) is not None
+			assert client_api_().bindDeviceByUserName(self.accountName,self.lonpassword,self.deviceId) is not None
 		except BaseException , ex :
 			self.error(ex)
 
 	def test_shortpsd_bindDeviceByUserName(self):
 
 		try:
-			assert self.bindDeviceByUserName(self.accountName,self.shorpassword,self.deviceId) is not None
+			assert client_api_().bindDeviceByUserName(self.accountName,self.shorpassword,self.deviceId) is not None
 		except BaseException , ex :
 			self.error(ex)
 
 	def test_mixpsd_bindDeviceByUserName(self):
 
 		try:
-			assert self.bindDeviceByUserName(self.accountName,self.mixpassword,self.deviceId) is not None
+			assert client_api_().bindDeviceByUserName(self.accountName,self.mixpassword,self.deviceId) is not None
 		except BaseException , ex :
 			self.error(ex)
 
-	def test_sympsd_bindDeviceByUserName(self):
-
-		try:
-			assert self.bindDeviceByUserName(self.accountName,self.sympassword,self.deviceId) is not None
-		except BaseException , ex :
-			self.error(ex)
 
 
 class test_getAccountInfosByDeviceId(unittest.TestCase,conf_param):
@@ -457,17 +452,6 @@ class test_getNewRecipeListByUserID(unittest.TestCase,conf_param):
 		except BaseException , ex :
 			self.error(ex)
 
-	def test_mix_getNewRecipeListByUserID(self):
-		try:
-			assert client_api_().getNewRecipeListByUserID(self.mixaccountName) is not None
-		except BaseException , ex :
-			self.error(ex)
-
-	def test_sym_getNewRecipeListByUserID(self):
-		try:
-			assert client_api_().getNewRecipeListByUserID(self.symaccountName) is not None
-		except BaseException , ex :
-			self.error(ex)
 
 class test_getNewphotoBydeviceID(unittest.TestCase,conf_param):
 
@@ -891,6 +875,54 @@ class test_getUserNameByUserID(unittest.TestCase,conf_param):
 			self.error(ex)
 
 
+class test_updateMemeberHealthInfo(unittest.TestCase,conf_param):
+
+	def setUp(self):
+		transport = conf_sys().transport
+		transport.open()
+
+	def teardown(self):
+		transport = conf_sys().transport
+		transport.close()
+
+	def test_normal_updateMemeberHealthInfo(self):
+		try:
+			getmemhealinfo = client_api_().client.getMemberHealthInfo(self.getPhrcode(self.accountName))
+			getmemhealinfo.phrLifestyle.smokingStateCode = '1'
+			assert client_api_().updateMemeberHealthInfo(self.getPhrcode(self.accountName),getmemhealinfo) is None
+		except BaseException , ex :
+			print ex.message
+			self.error(ex)
+
+class test_getHealthReportListsByFamilyId(unittest.TestCase,conf_param):
+
+	def setUp(self):
+		transport = conf_sys().transport
+		transport.open()
+
+	def teardown(self):
+		transport = conf_sys().transport
+		transport.close()
+
+	def test_normal_getHealthReportListsByFamilyId(self):
+		pass
+
+
+
+class test_unBindDeviceByFamilyId(unittest.TestCase,conf_param):
+
+	def setUp(self):
+		transport = conf_sys().transport
+		transport.open()
+
+	def teardown(self):
+		transport = conf_sys().transport
+		transport.close()
+
+	def test_normal_unBindDeviceByFamilyId(self):
+		pass
+
+
 class test_messageNotify(unittest.TestCase,conf_param):
 
 	def setUp(self):
@@ -902,13 +934,59 @@ class test_messageNotify(unittest.TestCase,conf_param):
 		transport.close()
 
 	def test_normal_messageNotify(self):
+		pass
 
-		try:
-			# print client_api_().getUserNameByUserID(self.getPhrcode(self.accountName))
-			assert client_api_().messageNotify() is not None
-		except BaseException , ex :
-			print ex.message
-			self.error(ex)
+class test_getServiceRecords(unittest.TestCase,conf_param):
+
+	def setUp(self):
+		transport = conf_sys().transport
+		transport.open()
+
+	def teardown(self):
+		transport = conf_sys().transport
+		transport.close()
+
+	def test_normal_getServiceRecords(self):
+		pass
+
+class test_getServiceHistory(unittest.TestCase,conf_param):
+
+	def setUp(self):
+		transport = conf_sys().transport
+		transport.open()
+
+	def teardown(self):
+		transport = conf_sys().transport
+		transport.close()
+
+	def test_normal_getServiceHistory(self):
+		pass
+
+class test_getCallDoctor(unittest.TestCase,conf_param):
+
+	def setUp(self):
+		transport = conf_sys().transport
+		transport.open()
+
+	def teardown(self):
+		transport = conf_sys().transport
+		transport.close()
+
+	def test_normal_getCallDoctor(self):
+		pass
+
+class test_updateServiceRecords(unittest.TestCase,conf_param):
+
+	def setUp(self):
+		transport = conf_sys().transport
+		transport.open()
+
+	def teardown(self):
+		transport = conf_sys().transport
+		transport.close()
+
+	def test_normal_updateServiceRecords(self):
+		pass
 
 
 
@@ -917,12 +995,41 @@ class test_messageNotify(unittest.TestCase,conf_param):
 
 if __name__ == "__main__":
 
-	#suite1 = unittest.TestLoader().loadTestsFromTestCase(client_branch)
-	suite2 = unittest.TestLoader().loadTestsFromTestCase(test_getUserNameByUserID)
-	#unittest.TextTestRunner(verbosity=2).run(suite1)
-	unittest.TextTestRunner(verbosity=2).run(suite2)
-	#suite = unittest.makeSuite(client_branch_design) #运行类下面的test所有用例
-	#suite = unittest.defaultTestLoader.discover('.','unit*.py') #运行当前目录下，以unit开头的所有用例
-	#fr = open(localaddr,'wb')
-	#runner = HTMLTestRunner.HTMLTestRunner(stream=fr,title='测试报告',description='测试报告详情')
-	#runner.run(suite2)
+	suite1 = unittest.TestLoader().loadTestsFromTestCase(test_findXKAccountByProofNum)
+	suite2 = unittest.TestLoader().loadTestsFromTestCase(test_registerAndBindAccount)
+	suite3 = unittest.TestLoader().loadTestsFromTestCase(test_bindDeviceByUserName)
+	suite4 = unittest.TestLoader().loadTestsFromTestCase(test_getAccountInfosByDeviceId)
+	suite5 = unittest.TestLoader().loadTestsFromTestCase(test_getDoctorInfoByDeviceID)
+	suite6 = unittest.TestLoader().loadTestsFromTestCase(test_getRecipeListByDeviceID)
+	suite7 = unittest.TestLoader().loadTestsFromTestCase(test_getphotoBydeviceID)
+	suite8 = unittest.TestLoader().loadTestsFromTestCase(test_checkBindStateByDeviceID)
+	suite9 = unittest.TestLoader().loadTestsFromTestCase(test_getOutsideListByDeviceId)
+	suite10 = unittest.TestLoader().loadTestsFromTestCase(test_getNewRecipeListByUserID)
+	suite11 = unittest.TestLoader().loadTestsFromTestCase(test_getNewphotoBydeviceID)
+	suite12 = unittest.TestLoader().loadTestsFromTestCase(test_serviceCardLoginByCardNum)
+	suite13 = unittest.TestLoader().loadTestsFromTestCase(test_serviceLoginByProofNum)
+	suite14 = unittest.TestLoader().loadTestsFromTestCase(test_editPassword)
+	suite15 = unittest.TestLoader().loadTestsFromTestCase(test_getCaregiverInfoService)
+	suite16 = unittest.TestLoader().loadTestsFromTestCase(test_bindDeviceByUserId)
+	suite17 = unittest.TestLoader().loadTestsFromTestCase(test_deleteAccountsByDeviceId)
+	suite18 = unittest.TestLoader().loadTestsFromTestCase(test_getFamilyInfosByUserId)
+	suite19 = unittest.TestLoader().loadTestsFromTestCase(test_getVerifyCodeByDeviceId)
+	suite20 = unittest.TestLoader().loadTestsFromTestCase(test_bindDeviceByFamilyId)
+	suite21 = unittest.TestLoader().loadTestsFromTestCase(test_getDoctorInfoService)
+	# suite22 = unittest.TestLoader().loadTestsFromTestCase(test_normal_getDoctorInfoService)
+	suite23 = unittest.TestLoader().loadTestsFromTestCase(test_getRecipeListByUserID)
+	suite24 = unittest.TestLoader().loadTestsFromTestCase(test_getphotoInfoByurl)
+	suite25 = unittest.TestLoader().loadTestsFromTestCase(test_getUserNameByUserID)
+	suite26 = unittest.TestLoader().loadTestsFromTestCase(test_updateMemeberHealthInfo)
+
+	suite_all = [suite1,suite2,suite3,suite4,suite5,
+				suite6,suite7,suite8,suite9,suite10,
+				suite11,suite12,suite13,suite14,suite15,
+				suite16,suite17,suite18,suite19,suite20,
+				suite21,suite23,suite24,suite25,suite26]
+
+	suite = unittest.TestSuite(suite_all) 
+	fr = open(localaddr,'wb')
+	runner = HTMLTestRunner.HTMLTestRunner(stream=fr,title='测试报告',description='测试报告详情')
+	runner.run(suite)
+	# unittest.TextTestRunner(verbosity=2).run(suite10)

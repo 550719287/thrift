@@ -42,7 +42,7 @@ class client_api_(conf_sys):
 	def findXKAccountByProofNum(self,idfy):
 		#need device
 		client = self.client
-		return client.findXKAccountByProofNum(idfy).userId
+		return client.findXKAccountByProofNum(idfy)
 		
 
 	def checkBindstate(self):
@@ -227,18 +227,18 @@ class client_api_(conf_sys):
 		#branch
 		return self.client.getUserNameByUserID(phr)
 
-	def checkBindStateByDeviceID(self):
+	def checkBindStateByDeviceID(self,mac):
 		#need device
-		return self.client.checkBindStateByDeviceID('awifidc:44:27:96:e9:ea')
+		return self.client.checkBindStateByDeviceID(mac)
 
 
 	def messageNotify(self):
 		#branch
 		pass
 
-	def getOutsideListByDeviceId(self):
+	def getOutsideListByDeviceId(self,mac):
 		#need device
-		return self.client.getOutsideListByDeviceId('awifidc:44:27:96:e9:ea')
+		return self.client.getOutsideListByDeviceId(mac)
 
 
 	def hostlogin(self):
@@ -246,10 +246,10 @@ class client_api_(conf_sys):
 		pass
 
 	def getAllServices(self):
-		#main or need device
+		#main
 		
 		try:
-			assert [self.client.getAllServices('awifidc:44:27:96:e9:ea')] is not None
+			assert self.client.getAllServices('awifidc:44:27:96:e9:ea') is not None
 		except BaseException , ex :
 			print ex
 			e = str(ex)
@@ -262,10 +262,10 @@ class client_api_(conf_sys):
 
 
 	def getUsingServices(self):
-		#main or need device
+		#main
 		
 		try:
-			assert [self.client.getUsingServices('awifidc:44:27:96:e9:ea')] is not None
+			assert self.client.getUsingServices('awifidc:44:27:96:e9:ea') is not None
 		except BaseException , ex :
 			print ex
 			e = str(ex)
@@ -341,9 +341,9 @@ class client_api_(conf_sys):
 		#branch
 		pass
 
-	def getNewRecipeListByUserID(self,userid):
+	def getNewRecipeListByUserID(self,username):
 		#need device
-		return [self.client.getNewRecipeListByUserID('awifidc:44:27:96:e9:ea','0',userid)]
+		return [self.client.getNewRecipeListByUserID('awifidc:44:27:96:e9:ea','0',username)]
 		
 
 	def getNewphotoBydeviceID(self,mac,username):
@@ -553,9 +553,9 @@ class client_api_(conf_sys):
 			else:
 				raise TypeError('HealthServiceException')
 
-	def updateMemeberHealthInfo(self):
+	def updateMemeberHealthInfo(self,phr,get):
 		#branch
-		pass
+		return self.client.updateMemeberHealthInfo(phr,get)
 
 if __name__ == "__main__":
 	a = client_api_()

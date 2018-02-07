@@ -10,10 +10,14 @@ sys.setdefaultencoding('utf8')
 sys.path.append('D:/thrift/gen-py')  
 import ttypes
 import UserService 
-import assertpy 
+import assertpy
+import unittest
 
 #报告路径
 localaddr = 'D:\\Report_ikeepertest.html'
+
+# testcase
+
 
 
 #接口地址配置
@@ -43,6 +47,7 @@ class conf_sys(object):
 	a.accountName = '15040344536'
 	a.password = '123456'
 	a.deviceId = 'awifidc:44:27:96:e9:ea'
+
 	mif = ttypes.MemberInfo()
 	cii = ttypes.CaregiverInfo()
 	mdr = ttypes.MemberDoctorRelation()
@@ -108,9 +113,4 @@ class conf_param(object):
 	def getfamilyid(self,phr):
 		familyid = conf_sys().client.getFamilyInfosByUserId(phr)
 		return familyid
-
-
-
-
-
 

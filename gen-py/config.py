@@ -70,7 +70,7 @@ class conf_param(object):
 	shorpassword = '12345'
 	mixpassword = '1q[ ]#；（）'
 
-	deviceId = 'awifi44:2c:05:4a:72:5d'
+	deviceId = 'awifi44:27:96:e9:ea'
 	londeviceId = 'awifidc:44:27:96:e9:ea:12'
 	shordeviceId = 'awifidc:44:27:96:e9'
 	mixdeviceId = 'awifidc:44:27:96:e9:[]'
@@ -82,7 +82,7 @@ class conf_param(object):
 	symcardid = '66660024900[ ]（）'
 	#健康卡号
 
-	accountName = '13500009876'
+	accountName = '15040344536'
 	lonaccountName = '1516090125123'
 	shoraccountName = '1516090125'
 	mixaccountName = '15160901qs你好'
@@ -110,7 +110,7 @@ class conf_param(object):
 		phr = conf_sys().client.findPersonPhrCodeByUniquerHealthInfo(accountName,0)
 		return phr
 
-	def getfamilyid(self,phr):
-		familyid = conf_sys().client.getFamilyInfosByUserId(phr)
+	def getfamilyid(self,mac):
+		familyid = conf_sys().client.checkBindStateByDeviceID(mac).familyId
 		return familyid
 

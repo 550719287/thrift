@@ -792,8 +792,14 @@ class test_bindDeviceByFamilyId(unittest.TestCase,conf_param):
 		transport = conf_sys().transport
 		transport.close()
 
-	def test_normal_bindDeviceByFamilyId(slef):
-		pass
+	def test_normal_bindDeviceByFamilyId(self):
+		familyid = self.getfamilyid(self.deviceId)
+		print familyid
+		try:
+			assert client_api_().bindDeviceByFamilyId(familyid,self.deviceId) is not None
+		except BaseException , ex :
+			print ex.message
+			self.error(ex)
 
 
 class test_getDoctorInfoService(unittest.TestCase,conf_param):
@@ -887,7 +893,7 @@ class test_updateMemeberHealthInfo(unittest.TestCase,conf_param):
 
 	def test_normal_updateMemeberHealthInfo(self):
 		try:
-			getmemhealinfo = client_api_().client.getMemberHealthInfo(self.getPhrcode(self.accountName))
+			getmemhealinfo = client_api_().getMemberHealthInfo(self.getPhrcode(self.accountName))
 			getmemhealinfo.phrLifestyle.smokingStateCode = '1'
 			assert client_api_().updateMemeberHealthInfo(self.getPhrcode(self.accountName),getmemhealinfo) is None
 		except BaseException , ex :
@@ -905,7 +911,13 @@ class test_getHealthReportListsByFamilyId(unittest.TestCase,conf_param):
 		transport.close()
 
 	def test_normal_getHealthReportListsByFamilyId(self):
-		pass
+		phr = self.getPhrcode(self.accountName)
+		familyid = self.getfamilyid(self.deviceId)
+		try:
+			assert client_api_().getHealthReportListsByFamilyId(phr,familyid) is not None
+		except BaseException , ex :
+			print ex.message
+			self.error(ex)
 
 
 
@@ -920,7 +932,13 @@ class test_unBindDeviceByFamilyId(unittest.TestCase,conf_param):
 		transport.close()
 
 	def test_normal_unBindDeviceByFamilyId(self):
-		pass
+		familyid = self.getfamilyid(self.deviceId)
+		print familyid
+		try:
+			assert client_api_().unBindDeviceByFamilyId(familyid,self.deviceId) is not None
+		except BaseException , ex :
+			print ex.message
+			self.error(ex)
 
 
 class test_messageNotify(unittest.TestCase,conf_param):
@@ -1021,6 +1039,8 @@ if __name__ == "__main__":
 	suite24 = unittest.TestLoader().loadTestsFromTestCase(test_getphotoInfoByurl)
 	suite25 = unittest.TestLoader().loadTestsFromTestCase(test_getUserNameByUserID)
 	suite26 = unittest.TestLoader().loadTestsFromTestCase(test_updateMemeberHealthInfo)
+	suite27 = unittest.TestLoader().loadTestsFromTestCase(test_getHealthReportListsByFamilyId)
+	suite28 = unittest.TestLoader().loadTestsFromTestCase(test_unBindDeviceByFamilyId)
 
 	suite_all = [suite1,suite2,suite3,suite4,suite5,
 				suite6,suite7,suite8,suite9,suite10,
@@ -1028,8 +1048,8 @@ if __name__ == "__main__":
 				suite16,suite17,suite18,suite19,suite20,
 				suite21,suite23,suite24,suite25,suite26]
 
-	suite = unittest.TestSuite(suite_all) 
-	fr = open(localaddr,'wb')
-	runner = HTMLTestRunner.HTMLTestRunner(stream=fr,title='测试报告',description='测试报告详情')
-	runner.run(suite)
-	# unittest.TextTestRunner(verbosity=2).run(suite10)
+	# suite = unittest.TestSuite(suite_all) 
+	# fr = open(localaddr,'wb')
+	# runner = HTMLTestRunner.HTMLTestRunner(stream=fr,title='测试报告',description='测试报告详情')
+	# runner.run(suite)
+	unittest.TextTestRunner(verbosity=2).run(suite20)

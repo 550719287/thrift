@@ -181,12 +181,12 @@ class client_api_(conf_sys):
 
 	def bindDeviceByFamilyId(self,familyid,mac):
 		#branch
-		return client.bindDeviceByFamilyId(familyid,mac)
+		return self.client.bindDeviceByFamilyId(familyid,mac)
 		
 
 	def unBindDeviceByFamilyId(self,familyid,mac):
 		#branch
-		return client.unbindDeviceByFamilyId(familyid,mac)
+		return self.client.unBindDeviceByFamilyId(familyid,mac)
 
 
 	def getDoctorInfoService(self,phr,mac):
@@ -337,9 +337,10 @@ class client_api_(conf_sys):
 			else:
 				raise TypeError('HealthServiceException')
 
-	def getHealthReportListsByFamilyId(self):
+	def getHealthReportListsByFamilyId(self,phr,familyid):
 		#branch
-		pass
+
+		return self.client.getHealthReportListsByFamilyId(phr,3,0,5000,familyid)
 
 	def getNewRecipeListByUserID(self,username):
 		#need device
@@ -538,20 +539,9 @@ class client_api_(conf_sys):
 			else:
 				raise TypeError('HealthServiceException')
 
-	def getMemberHealthInfo(self):
+	def getMemberHealthInfo(self,phr):
 		#branch
-		
-		try:
-			assert self.client.getMemberHealthInfo('M5A1CFEDBE4B09F03008C774D') is not None
-		except BaseException , ex :
-			print ex
-			e = str(ex)
-			try:
-				assertpy.assert_that(e).contains('HealthServiceException')
-			except:
-				raise TypeError('Network Error')
-			else:
-				raise TypeError('HealthServiceException')
+		return self.client.getMemberHealthInfo(phr)
 
 	def updateMemeberHealthInfo(self,phr,get):
 		#branch

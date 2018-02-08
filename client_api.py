@@ -232,9 +232,9 @@ class client_api_(conf_sys):
 		return self.client.checkBindStateByDeviceID(mac)
 
 
-	def messageNotify(self):
+	def messageNotify(self,msginfo):
 		#branch
-		pass
+		return self.client.messageNotify(msginfo)
 
 	def getOutsideListByDeviceId(self,mac):
 		#need device
@@ -245,20 +245,9 @@ class client_api_(conf_sys):
 		#branch
 		pass
 
-	def getAllServices(self):
+	def getAllServices(self,mac):
 		#main
-		
-		try:
-			assert self.client.getAllServices('awifidc:44:27:96:e9:ea') is not None
-		except BaseException , ex :
-			print ex
-			e = str(ex)
-			try:
-				assertpy.assert_that(e).contains('HealthServiceException')
-			except:
-				raise TypeError('Network Error')
-			else:
-				raise TypeError('HealthServiceException')
+		return self.client.getAllServices(mac)
 
 
 	def getUsingServices(self):
@@ -280,13 +269,13 @@ class client_api_(conf_sys):
 		#branch
 		pass
 
-	def getServiceRecords(self):
+	def getServiceRecords(self,mac,serviceid):
 		#branch
-		pass
+		return self.client.getServiceRecords(mac,serviceid)
 
-	def getServiceHistory(self):
+	def getServiceHistory(self,mac,serviceid):
 		#branch
-		pass
+		return self.client.getServiceHistory(mac,serviceid)
 
 	def getFamilyPoints(self):
 		#main or need device
@@ -318,9 +307,9 @@ class client_api_(conf_sys):
 			else:
 				raise TypeError('HealthServiceException')
 
-	def updateServiceRecords(self):
+	def updateServiceRecords(self,recordid):
 		#branch
-		pass
+		return self.client.updateServiceRecords(1,recordid)
 
 	def getHealthReportLists(self):
 		#branch
@@ -516,9 +505,9 @@ class client_api_(conf_sys):
 		return self.client.serviceLoginByProofNum(ide,mac)
 		
 
-	def getCallDoctor(self):
+	def getCallDoctor(self,serviceid):
 		#branch
-		pass
+		return self.client.getCallDoctor(serviceid)
 
 	def saveInterfaceLog(self):
 		#branch

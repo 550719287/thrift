@@ -952,7 +952,23 @@ class test_messageNotify(unittest.TestCase,conf_param):
 		transport.close()
 
 	def test_normal_messageNotify(self):
-		pass
+		a = client_api_().getAllServices(self.deviceId)
+		b = MessageInfo()
+		time1 = int(time.time())
+		msgtime = str(time1)
+		if len(a) > 0 :
+			b.serviceid = a[0].id
+			b.fromPerson = self.getPhrcode(self.accountName)
+			b.toPerson = self.getPhrcode(self.accountName)
+			b.messageTime = msgtime
+			b.messageType = '2'
+			b.messageContent = '123wer'
+			b.deviceid = self.deviceId
+		try:
+			assert client_api_().messageNotify(b) is None
+		except BaseException , ex :
+			print ex.message
+			self.error(ex)
 
 class test_getServiceRecords(unittest.TestCase,conf_param):
 
@@ -965,7 +981,16 @@ class test_getServiceRecords(unittest.TestCase,conf_param):
 		transport.close()
 
 	def test_normal_getServiceRecords(self):
-		pass
+		a = client_api_().getAllServices(self.deviceId)
+		b = 1
+		if len(a) > 0 :
+			b = a[0].id
+
+		try:
+			assert client_api_().getServiceRecords(self.deviceId,b) is not None
+		except BaseException , ex :
+			print ex.message
+			self.error(ex)
 
 class test_getServiceHistory(unittest.TestCase,conf_param):
 
@@ -978,7 +1003,16 @@ class test_getServiceHistory(unittest.TestCase,conf_param):
 		transport.close()
 
 	def test_normal_getServiceHistory(self):
-		pass
+		a = client_api_().getAllServices(self.deviceId)
+		b = 1
+		if len(a) > 0 :
+			b = a[0].id
+
+		try:
+			assert client_api_().getServiceHistory(self.deviceId,b) is not None
+		except BaseException , ex :
+			print ex.message
+			self.error(ex)
 
 class test_getCallDoctor(unittest.TestCase,conf_param):
 
@@ -991,7 +1025,16 @@ class test_getCallDoctor(unittest.TestCase,conf_param):
 		transport.close()
 
 	def test_normal_getCallDoctor(self):
-		pass
+		a = client_api_().getAllServices(self.deviceId)
+		b = 1
+		if len(a) > 0 :
+			b = a[0].id
+
+		try:
+			assert client_api_().getCallDoctor(b) is not None
+		except BaseException , ex :
+			print ex.message
+			self.error(ex)
 
 class test_updateServiceRecords(unittest.TestCase,conf_param):
 
@@ -1004,7 +1047,23 @@ class test_updateServiceRecords(unittest.TestCase,conf_param):
 		transport.close()
 
 	def test_normal_updateServiceRecords(self):
-		pass
+		#mac地址需要绑定家庭和服务
+
+		try:
+			a = client_api_().getAllServices('awifidc:44:27:96:e9:63')
+			serviceid = 1
+			if len(a) > 0 :
+				serviceid = a[0].id
+			b = client_api_().getServiceRecords('awifidc:44:27:96:e9:63',serviceid)
+			recordid = 1
+			if len(b) > 0 :
+				recordid = b[0].recordId
+
+			assert client_api_().updateServiceRecords(recordid) is not None
+
+		except BaseException , ex :
+			print ex.message
+			self.error(ex)
 
 
 
@@ -1034,22 +1093,28 @@ if __name__ == "__main__":
 	suite19 = unittest.TestLoader().loadTestsFromTestCase(test_getVerifyCodeByDeviceId)
 	suite20 = unittest.TestLoader().loadTestsFromTestCase(test_bindDeviceByFamilyId)
 	suite21 = unittest.TestLoader().loadTestsFromTestCase(test_getDoctorInfoService)
-	# suite22 = unittest.TestLoader().loadTestsFromTestCase(test_normal_getDoctorInfoService)
-	suite23 = unittest.TestLoader().loadTestsFromTestCase(test_getRecipeListByUserID)
-	suite24 = unittest.TestLoader().loadTestsFromTestCase(test_getphotoInfoByurl)
-	suite25 = unittest.TestLoader().loadTestsFromTestCase(test_getUserNameByUserID)
-	suite26 = unittest.TestLoader().loadTestsFromTestCase(test_updateMemeberHealthInfo)
-	suite27 = unittest.TestLoader().loadTestsFromTestCase(test_getHealthReportListsByFamilyId)
-	suite28 = unittest.TestLoader().loadTestsFromTestCase(test_unBindDeviceByFamilyId)
+	suite22 = unittest.TestLoader().loadTestsFromTestCase(test_getRecipeListByUserID)
+	suite23 = unittest.TestLoader().loadTestsFromTestCase(test_getphotoInfoByurl)
+	suite24 = unittest.TestLoader().loadTestsFromTestCase(test_getUserNameByUserID)
+	suite25 = unittest.TestLoader().loadTestsFromTestCase(test_updateMemeberHealthInfo)
+	suite26 = unittest.TestLoader().loadTestsFromTestCase(test_getHealthReportListsByFamilyId)
+	suite27 = unittest.TestLoader().loadTestsFromTestCase(test_unBindDeviceByFamilyId)
+	suite28 = unittest.TestLoader().loadTestsFromTestCase(test_messageNotify)
+	suite29 = unittest.TestLoader().loadTestsFromTestCase(test_getServiceRecords)
+	suite30 = unittest.TestLoader().loadTestsFromTestCase(test_getServiceHistory)
+	suite31 = unittest.TestLoader().loadTestsFromTestCase(test_getCallDoctor)
+	suite32 = unittest.TestLoader().loadTestsFromTestCase(test_updateServiceRecords)
 
 	suite_all = [suite1,suite2,suite3,suite4,suite5,
 				suite6,suite7,suite8,suite9,suite10,
 				suite11,suite12,suite13,suite14,suite15,
 				suite16,suite17,suite18,suite19,suite20,
-				suite21,suite23,suite24,suite25,suite26]
+				suite21,suite22,suite23,suite24,suite25,
+				suite26,suite27,suite28,suite29,suite30,
+				suite31,suite32]
 
-	# suite = unittest.TestSuite(suite_all) 
-	# fr = open(localaddr,'wb')
-	# runner = HTMLTestRunner.HTMLTestRunner(stream=fr,title='测试报告',description='测试报告详情')
-	# runner.run(suite)
-	unittest.TextTestRunner(verbosity=2).run(suite20)
+	suite = unittest.TestSuite(suite_all) 
+	fr = open(localaddr,'wb')
+	runner = HTMLTestRunner.HTMLTestRunner(stream=fr,title='测试报告',description='测试报告详情')
+	runner.run(suite)
+	# unittest.TextTestRunner(verbosity=2).run(suite33)

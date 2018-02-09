@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from thrift import Thrift	
-#from thrift.transport import TSocket  
 from thrift.transport import TTransport  
 from thrift.protocol import TBinaryProtocol  
 from thrift.transport import THttpClient 
@@ -12,8 +11,6 @@ sys.setdefaultencoding('utf8')
 sys.path.append('D:/thrift/gen-py')  
 from ttypes import *
 import UserService
-import traceback
-import logging
 import unittest
 import HTMLTestRunner
 import assertpy  
@@ -39,7 +36,7 @@ class test_findXKAccountByProofNum(unittest.TestCase,conf_param):
 		try:
 			assert client_api_().findXKAccountByProofNum(self.identify).userId
 		except BaseException , ex :
-			self.error(ex)
+			self.error_normal(ex)
 
 		
 
@@ -90,7 +87,7 @@ class test_registerAndBindAccount(unittest.TestCase,conf_param):
 		try:
 			assert client_api_().registerAndBindAccount(self.deviceId) is not None
 		except BaseException , ex :
-			self.error(ex)
+			self.error_normal(ex)
 
 	def test_long_registerAndBindAccount(self):
 
@@ -130,7 +127,7 @@ class test_bindDeviceByUserName(unittest.TestCase,conf_param):
 		try:
 			assert client_api_().bindDeviceByUserName(self.accountName,self.password,self.deviceId) is not None
 		except BaseException , ex :
-			self.error(ex)
+			self.error_normal(ex)
 
 	def test_allwrong_bindDeviceByUserName(self):
 
@@ -208,7 +205,7 @@ class test_getAccountInfosByDeviceId(unittest.TestCase,conf_param):
 		try:	
 			assert client_api_().getAccountInfosByDeviceId(self.deviceId) is not None
 		except BaseException , ex :
-			self.error(ex)
+			self.error_normal(ex)
 
 	def test_long_getAccountInfosByDeviceId(self):
 
@@ -245,7 +242,7 @@ class test_getDoctorInfoByDeviceID(unittest.TestCase,conf_param):
 		try:
 			assert client_api_().getDoctorInfoByDeviceID(self.deviceId) is not None
 		except BaseException , ex :
-			self.error(ex)
+			self.error_normal(ex)
 
 	def test_getDoctorInfoByDeviceID(self):
 
@@ -284,7 +281,7 @@ class test_getRecipeListByDeviceID(unittest.TestCase,conf_param):
 		try:
 			assert client_api_().getRecipeListByDeviceID(self.deviceId) is not None
 		except BaseException , ex :
-			self.error(ex)
+			self.error_normal(ex)
 
 	def test_long_getRecipeListByDeviceID(self):
 
@@ -322,7 +319,7 @@ class test_getphotoBydeviceID(unittest.TestCase,conf_param):
 		try:
 			assert client_api_().getphotoBydeviceID(self.deviceId) is not None
 		except BaseException , ex :
-			self.error(ex)
+			self.error_normal(ex)
 
 	def test_long_getphotoBydeviceID(self):
 
@@ -360,7 +357,7 @@ class test_checkBindStateByDeviceID(unittest.TestCase,conf_param):
 		try:
 			assert client_api_().checkBindStateByDeviceID(self.deviceId) is not None
 		except BaseException , ex :
-			self.error(ex)
+			self.error_normal(ex)
 
 	def test_long_checkBindStateByDeviceID(self):
 
@@ -398,7 +395,7 @@ class test_getOutsideListByDeviceId(unittest.TestCase,conf_param):
 		try:
 			assert client_api_().getOutsideListByDeviceId(self.deviceId) is not None
 		except BaseException , ex :
-			self.error(ex)
+			self.error_normal(ex)
 
 	def test_long_getOutsideListByDeviceId(self):
 
@@ -436,7 +433,7 @@ class test_getNewRecipeListByUserID(unittest.TestCase,conf_param):
 		try:
 			assert client_api_().getNewRecipeListByUserID(self.accountName) is not None
 		except BaseException , ex :
-			self.error(ex)
+			self.error_normal(ex)
 
 	def test_long_getNewRecipeListByUserID(self):
 
@@ -468,7 +465,7 @@ class test_getNewphotoBydeviceID(unittest.TestCase,conf_param):
 		try:
 			assert client_api_().getNewphotoBydeviceID(self.deviceId,self.accountName) is not None
 		except BaseException , ex :
-			self.error(ex)
+			self.error_normal(ex)
 
 	def test_long_getNewphotoBydeviceID(self):
 
@@ -510,7 +507,7 @@ class test_serviceCardLoginByCardNum(unittest.TestCase,conf_param):
 		try:
 			assert client_api_().serviceCardLoginByCardNum(self.cardid) is not None
 		except BaseException , ex :
-			self.error(ex)
+			self.error_normal(ex)
 
 	def test_long_serviceCardLoginByCardNum(self):
 
@@ -552,7 +549,7 @@ class test_serviceLoginByProofNum(unittest.TestCase,conf_param):
 		try:
 			assert client_api_().serviceLoginByProofNum(self.identify, self.deviceId) is not None
 		except BaseException , ex :
-			self.error(ex)
+			self.error_normal(ex)
 
 	def test_long_serviceLoginByProofNum(self):
 
@@ -595,7 +592,7 @@ class test_editPassword(unittest.TestCase,conf_param):
 		try:
 			assert client_api_().editPassword(self.getPhrcode(self.accountName), self.password, self.password) is None
 		except BaseException , ex :
-			self.error(ex)
+			self.error_normal(ex)
 
 	def test_long_editPassword(self):
 
@@ -637,7 +634,7 @@ class test_getCaregiverInfoService(unittest.TestCase,conf_param):
 		try:
 			assert client_api_().getCaregiverInfoService(self.getPhrcode(self.accountName), self.deviceId) is not None
 		except BaseException , ex :
-			self.error(ex)
+			self.error_normal(ex)
 
 	def test_long_getCaregiverInfoService(self):
 
@@ -677,7 +674,7 @@ class test_bindDeviceByUserId(unittest.TestCase,conf_param):
 		try:
 			assert client_api_().bindDeviceByUserId(self.getPhrcode(self.accountName), self.deviceId) is None
 		except BaseException , ex :
-			self.error(ex)
+			self.error_normal(ex)
 
 	def test_long_bindDeviceByUserId(self):
 
@@ -718,7 +715,7 @@ class test_deleteAccountsByDeviceId(unittest.TestCase,conf_param):
 			assert client_api_().deleteAccountsByDeviceId(self.getPhrcode(self.accountName), self.deviceId) is not None
 		except BaseException , ex :
 			print ex.message
-			self.error(ex)
+			self.error_normal(ex)
 
 	def test_long_deleteAccountsByDeviceId(self):
 
@@ -761,7 +758,7 @@ class test_getFamilyInfosByUserId(unittest.TestCase,conf_param):
 			print lis[0]
 		except BaseException , ex :
 			print ex.message
-			self.error(ex)
+			self.error_normal(ex)
 
 class test_getVerifyCodeByDeviceId(unittest.TestCase,conf_param):
 
@@ -799,7 +796,7 @@ class test_bindDeviceByFamilyId(unittest.TestCase,conf_param):
 			assert client_api_().bindDeviceByFamilyId(familyid,self.deviceId) is not None
 		except BaseException , ex :
 			print ex.message
-			self.error(ex)
+			self.error_normal(ex)
 
 
 class test_getDoctorInfoService(unittest.TestCase,conf_param):
@@ -818,7 +815,7 @@ class test_getDoctorInfoService(unittest.TestCase,conf_param):
 			print client_api_().getDoctorInfoService(self.getPhrcode(self.accountName), self.deviceId)
 		except BaseException , ex :
 			print ex.message
-			self.error(ex)
+			self.error_normal(ex)
 
 class test_getRecipeListByUserID(unittest.TestCase,conf_param):
 
@@ -835,7 +832,7 @@ class test_getRecipeListByUserID(unittest.TestCase,conf_param):
 			assert client_api_().getRecipeListByUserID(self.getPhrcode(self.accountName)) is not None
 		except BaseException , ex :
 			print ex.message
-			self.error(ex)
+			self.error_normal(ex)
 
 class test_getphotoInfoByurl(unittest.TestCase,conf_param):
 
@@ -859,7 +856,7 @@ class test_getphotoInfoByurl(unittest.TestCase,conf_param):
 			assert client_api_().getphotoInfoByurl(b) is not None
 		except BaseException , ex :
 			print ex.message
-			self.error(ex)
+			self.error_normal(ex)
 
 class test_getUserNameByUserID(unittest.TestCase,conf_param):
 
@@ -878,7 +875,7 @@ class test_getUserNameByUserID(unittest.TestCase,conf_param):
 			assert client_api_().getUserNameByUserID(self.getPhrcode(self.accountName)) is not None
 		except BaseException , ex :
 			print ex.message
-			self.error(ex)
+			self.error_normal(ex)
 
 
 class test_updateMemeberHealthInfo(unittest.TestCase,conf_param):
@@ -898,7 +895,7 @@ class test_updateMemeberHealthInfo(unittest.TestCase,conf_param):
 			assert client_api_().updateMemeberHealthInfo(self.getPhrcode(self.accountName),getmemhealinfo) is None
 		except BaseException , ex :
 			print ex.message
-			self.error(ex)
+			self.error_normal(ex)
 
 class test_getHealthReportListsByFamilyId(unittest.TestCase,conf_param):
 
@@ -917,7 +914,7 @@ class test_getHealthReportListsByFamilyId(unittest.TestCase,conf_param):
 			assert client_api_().getHealthReportListsByFamilyId(phr,familyid) is not None
 		except BaseException , ex :
 			print ex.message
-			self.error(ex)
+			self.error_normal(ex)
 
 
 
@@ -938,7 +935,7 @@ class test_unBindDeviceByFamilyId(unittest.TestCase,conf_param):
 			assert client_api_().unBindDeviceByFamilyId(familyid,self.deviceId) is not None
 		except BaseException , ex :
 			print ex.message
-			self.error(ex)
+			self.error_normal(ex)
 
 
 class test_messageNotify(unittest.TestCase,conf_param):
@@ -968,7 +965,7 @@ class test_messageNotify(unittest.TestCase,conf_param):
 			assert client_api_().messageNotify(b) is None
 		except BaseException , ex :
 			print ex.message
-			self.error(ex)
+			self.error_normal(ex)
 
 class test_getServiceRecords(unittest.TestCase,conf_param):
 
@@ -990,7 +987,7 @@ class test_getServiceRecords(unittest.TestCase,conf_param):
 			assert client_api_().getServiceRecords(self.deviceId,b) is not None
 		except BaseException , ex :
 			print ex.message
-			self.error(ex)
+			self.error_normal(ex)
 
 class test_getServiceHistory(unittest.TestCase,conf_param):
 
@@ -1012,7 +1009,7 @@ class test_getServiceHistory(unittest.TestCase,conf_param):
 			assert client_api_().getServiceHistory(self.deviceId,b) is not None
 		except BaseException , ex :
 			print ex.message
-			self.error(ex)
+			self.error_normal(ex)
 
 class test_getCallDoctor(unittest.TestCase,conf_param):
 
@@ -1034,7 +1031,7 @@ class test_getCallDoctor(unittest.TestCase,conf_param):
 			assert client_api_().getCallDoctor(b) is not None
 		except BaseException , ex :
 			print ex.message
-			self.error(ex)
+			self.error_normal(ex)
 
 class test_updateServiceRecords(unittest.TestCase,conf_param):
 
@@ -1063,10 +1060,132 @@ class test_updateServiceRecords(unittest.TestCase,conf_param):
 
 		except BaseException , ex :
 			print ex.message
+			self.error_normal(ex)
+
+
+class test_BindCardToPerson(unittest.TestCase,conf_param):
+
+	def setUp(self):
+		transport = conf_sys().transport
+		transport.open()
+
+	def teardown(self):
+		transport = conf_sys().transport
+		transport.close()
+
+	def test_normal_BindCardToPerson(self):
+
+		try:
+			assert client_api_().BindCardToPerson(self.deviceId,self.cardid,self.password,self.getPhrcode(self.accountName)) is not None
+		except BaseException , ex :
+			print ex.message
+			self.error_normal(ex)
+
+	def test_long_BindCardToPerson(self):
+
+		try:
+			assert client_api_().BindCardToPerson(self.deviceId,self.loncardid,self.password,self.getPhrcode(self.accountName)) is not None
+		except BaseException , ex :
+			print ex.message
+			self.error(ex)
+
+	def test_short_BindCardToPerson(self):
+
+		try:
+			assert client_api_().BindCardToPerson(self.deviceId,self.shorcardid,self.password,self.getPhrcode(self.accountName)) is not None
+		except BaseException , ex :
+			print ex.message
+			self.error(ex)
+
+	def test_mix_BindCardToPerson(self):
+
+		try:
+			assert client_api_().BindCardToPerson(self.deviceId,self.mixcardid,self.password,self.getPhrcode(self.accountName)) is not None
+		except BaseException , ex :
+			print ex.message
+			self.error(ex)
+
+	def test_sym_BindCardToPerson(self):
+
+		try:
+			assert client_api_().BindCardToPerson(self.deviceId,self.symcardid,self.password,self.getPhrcode(self.accountName)) is not None
+		except BaseException , ex :
+			print ex.message
 			self.error(ex)
 
 
+class test_serviceCardGetPointsHistory(unittest.TestCase,conf_param):
 
+	def setUp(self):
+		transport = conf_sys().transport
+		transport.open()
+
+	def teardown(self):
+		transport = conf_sys().transport
+		transport.close()
+
+	def test_normal_serviceCardGetPointsHistory(self):
+
+		try:
+			assert client_api_().serviceCardGetPointsHistory(self.getPhrcode(self.accountName)) is not None
+		except BaseException , ex :
+			print ex.message
+			self.error_normal(ex)
+
+class test_serviceCardGetUserPoints(unittest.TestCase,conf_param):
+
+	def setUp(self):
+		transport = conf_sys().transport
+		transport.open()
+
+	def teardown(self):
+		transport = conf_sys().transport
+		transport.close()
+
+	def test_normal_serviceCardGetUserPoints(self):
+
+		try:
+			assert client_api_().serviceCardGetUserPoints(self.getPhrcode(self.accountName)) >= 0
+		except BaseException , ex :
+			print ex.message
+			self.error_normal(ex)
+
+class test_getHealthReportLists(unittest.TestCase,conf_param):
+
+	def setUp(self):
+		transport = conf_sys().transport
+		transport.open()
+
+	def teardown(self):
+		transport = conf_sys().transport
+		transport.close()
+
+	def test_normal_getHealthReportLists(self):
+
+		try:
+			assert client_api_().getHealthReportLists(self.getPhrcode(self.accountName)) is not None
+		except BaseException , ex :
+			print ex.message
+			self.error_normal(ex)
+
+
+class test_checkBindstate(unittest.TestCase,conf_param):
+
+	def setUp(self):
+		transport = conf_sys().transport
+		transport.open()
+
+	def teardown(self):
+		transport = conf_sys().transport
+		transport.close()
+
+	def test_normal_checkBindstate(self):
+
+		try:
+			assert client_api_().checkBindstate(self.deviceId, self.getPhrcode(self.accountName)) is not None
+		except BaseException , ex :
+			print ex.message
+			self.error_normal(ex)
 
 
 
@@ -1104,6 +1223,11 @@ if __name__ == "__main__":
 	suite30 = unittest.TestLoader().loadTestsFromTestCase(test_getServiceHistory)
 	suite31 = unittest.TestLoader().loadTestsFromTestCase(test_getCallDoctor)
 	suite32 = unittest.TestLoader().loadTestsFromTestCase(test_updateServiceRecords)
+	suite33 = unittest.TestLoader().loadTestsFromTestCase(test_BindCardToPerson)
+	suite34 = unittest.TestLoader().loadTestsFromTestCase(test_serviceCardGetPointsHistory)
+	suite35 = unittest.TestLoader().loadTestsFromTestCase(test_serviceCardGetUserPoints)
+	suite36 = unittest.TestLoader().loadTestsFromTestCase(test_getHealthReportLists)
+	suite37 = unittest.TestLoader().loadTestsFromTestCase(test_checkBindstate)
 
 	suite_all = [suite1,suite2,suite3,suite4,suite5,
 				suite6,suite7,suite8,suite9,suite10,
@@ -1111,10 +1235,11 @@ if __name__ == "__main__":
 				suite16,suite17,suite18,suite19,suite20,
 				suite21,suite22,suite23,suite24,suite25,
 				suite26,suite27,suite28,suite29,suite30,
-				suite31,suite32]
+				suite31,suite32,suite33,suite34,suite35,
+				suite36,suite37]
 
 	suite = unittest.TestSuite(suite_all) 
 	fr = open(localaddr,'wb')
 	runner = HTMLTestRunner.HTMLTestRunner(stream=fr,title='测试报告',description='测试报告详情')
 	runner.run(suite)
-	# unittest.TextTestRunner(verbosity=2).run(suite33)
+	# unittest.TextTestRunner(verbosity=2).run(suite37)

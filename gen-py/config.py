@@ -16,9 +16,6 @@ import unittest
 #报告路径
 localaddr = 'D:\\Report_ikeepertest.html'
 
-# testcase
-
-
 
 #接口地址配置
 ipaddr = '10.32.173.200'
@@ -65,7 +62,7 @@ class conf_param(object):
 	symidentify = '210103199007141,.;（）'
 	#身份证
 
-	password = '1q![];'
+	password = '123456'
 	lonpassword = '12345678901234567890[]qwerty'
 	shorpassword = '12345'
 	mixpassword = '1q[ ]#；（）'
@@ -104,7 +101,25 @@ class conf_param(object):
 				print ex.message
 				raise TypeError('HTTP ERROR')
 		else:
-			print(e)
+			print ex.message
+			print (e)
+
+	def error_normal(self,ex):
+		e = str(ex)
+		try:
+			assertpy.assert_that(e).contains('HealthServiceException')
+		except:
+			try:
+				assertpy.assert_that(e).contains('HTTP')
+			except:
+				print ex.message
+				raise TypeError('ICE Error')
+			else:
+				print ex.message
+				raise TypeError('HTTP ERROR')
+		else:
+			print ex.message
+			raise TypeError('HealthServiceException')
 
 	def getPhrcode(self,accountName):
 		phr = conf_sys().client.findPersonPhrCodeByUniquerHealthInfo(accountName,0)

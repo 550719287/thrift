@@ -15,6 +15,9 @@ import logging
 import assertpy
 from config import conf_sys
 
+#main 主功能不需要参数设计 见client文件
+#needd device 需要各种参数变量设计 见client_branch_design文件
+#branch 分支结构需要其它接口返回值作为中间参数  见client_branch_design文件
 
 class client_api_(conf_sys):
 
@@ -45,21 +48,10 @@ class client_api_(conf_sys):
 		return client.findXKAccountByProofNum(idfy)
 		
 
-	def checkBindstate(self):
+	def checkBindstate(self,mac,phr):
 		#branchmac
 		client = self.client
-		
-		try:
-			assert client.checkBindstate("awifidc:44:27:96:e9:ea","M5A1CFEDBE4B09F03008C774D") is False or True
-		except BaseException , ex :
-			print ex
-			e = str(ex)
-			try:
-				assertpy.assert_that(e).contains('HealthServiceException')
-			except:
-				raise TypeError('Network Error')
-			else:
-				raise TypeError('HealthServiceException')
+		return client.checkBindstate(mac,phr)
 
 	def registerAccount(self):
 		#main
@@ -114,21 +106,25 @@ class client_api_(conf_sys):
 	def getMembers(self):
 		#branch
 		#error
+		#没有参数
 		pass
 
 	def addMember(self):
 		#branch
 		#error
+		#没有参数
 		pass
 
 	def deleteMembers(self):
 		#branch
 		#error
+		#没有参数
 		pass
 
 	def getCaregiverInfoService(self,phr,mac):
 		#branch
 		#error
+		#没有接口
 
 		client = self.client
 		return client.getCaregiverInfoService(phr,mac)
@@ -243,6 +239,7 @@ class client_api_(conf_sys):
 
 	def hostlogin(self):
 		#branch
+		#hostID没用过
 		pass
 
 	def getAllServices(self,mac):
@@ -267,6 +264,7 @@ class client_api_(conf_sys):
 
 	def addOutside(self):
 		#branch
+		#益体机绑定外设业务更改
 		pass
 
 	def getServiceRecords(self,mac,serviceid):
@@ -278,7 +276,7 @@ class client_api_(conf_sys):
 		return self.client.getServiceHistory(mac,serviceid)
 
 	def getFamilyPoints(self):
-		#main or need device
+		#main
 		
 		try:
 			assert [self.client.getFamilyPoints('awifidc:44:27:96:e9:ea')] is not None
@@ -293,7 +291,7 @@ class client_api_(conf_sys):
 				raise TypeError('HealthServiceException')
 
 	def getPointsHistory(self):
-		#main or need device
+		#main
 		
 		try:
 			assert [self.client.getPointsHistory('awifidc:44:27:96:e9:ea',50)] is not None
@@ -311,20 +309,10 @@ class client_api_(conf_sys):
 		#branch
 		return self.client.updateServiceRecords(1,recordid)
 
-	def getHealthReportLists(self):
+	def getHealthReportLists(self,phr):
 		#branch
-		
-		try:
-			assert [self.client.getHealthReportLists('M5A1CFEDBE4B09F03008C774D',1,0,100)] is not None
-		except BaseException , ex :
-			print ex
-			e = str(ex)
-			try:
-				assertpy.assert_that(e).contains('HealthServiceException')
-			except:
-				raise TypeError('Network Error')
-			else:
-				raise TypeError('HealthServiceException')
+		return self.client.getHealthReportLists(phr,1,0,100)
+
 
 	def getHealthReportListsByFamilyId(self,phr,familyid):
 		#branch
@@ -340,35 +328,16 @@ class client_api_(conf_sys):
 		#need device
 		return [self.client.getNewphotoBydeviceID(mac,'0',username)]
 
-	def serviceCardGetUserPoints(self):
+	def serviceCardGetUserPoints(self,phr):
 		#branch
-		
-		try:
-			assert self.client.serviceCardGetUserPoints('M5A1CFEDBE4B09F03008C774D') is not None
-		except BaseException , ex :
-			print ex
-			e = str(ex)
-			try:
-				assertpy.assert_that(e).contains('HealthServiceException')
-			except:
-				raise TypeError('Network Error')
-			else:
-				raise TypeError('HealthServiceException')
+		return self.client.serviceCardGetUserPoints(phr)
 
-	def serviceCardGetPointsHistory(self):
+
+	def serviceCardGetPointsHistory(self,phr):
 		#branch
-		
-		try:
-			assert self.client.serviceCardGetPointsHistory('M5A1CFEDBE4B09F03008C774D',50) is not None
-		except BaseException , ex :
-			print ex
-			e = str(ex)
-			try:
-				assertpy.assert_that(e).contains('HealthServiceException')
-			except:
-				raise TypeError('Network Error')
-			else:
-				raise TypeError('HealthServiceException')
+		#num参数不知道
+		return self.client.serviceCardGetPointsHistory(phr,50)
+
 
 	def serviceCardLoginByCardNum(self,cardid):
 		#need device
@@ -391,20 +360,9 @@ class client_api_(conf_sys):
 			else:
 				raise TypeError('HealthServiceException')
 
-	def BindCardToPerson(self):
+	def BindCardToPerson(self,mac,cardid,psd,phr):
 		#branch and need device
-		
-		try:
-			assert self.client.BindCardToPerson('awifidc:44:27:96:e9:ea','66660024900193','111111','M5A1CFEDBE4B09F03008C774D') is not None
-		except BaseException , ex :
-			print ex
-			e = str(ex)
-			try:
-				assertpy.assert_that(e).contains('HealthServiceException')
-			except:
-				raise TypeError('Network Error')
-			else:
-				raise TypeError('HealthServiceException')
+		return self.client.BindCardToPerson(mac,cardid,psd,phr)
 
 	def getPurchasedServices(self):
 		#main
@@ -511,6 +469,7 @@ class client_api_(conf_sys):
 
 	def saveInterfaceLog(self):
 		#branch
+		#南京益体机专用需要提供经纬度
 		pass
 
 	def getPeripheralConfigureList(self):

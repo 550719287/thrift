@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 
 from thrift import Thrift	
-#from thrift.transport import TSocket  
 from thrift.transport import TTransport  
 from thrift.protocol import TBinaryProtocol  
-from thrift.transport import THttpClient 
+from thrift.transport import THttpClient      #开发使用的thrift框架http请求，需要进入python在thrift包里找到合适的对应方法
 import time
 import sys	
 reload(sys)
@@ -13,7 +12,7 @@ sys.path.append('D:/thrift/gen-py')
 from ttypes import *
 import UserService
 import traceback
-import logging
+import logging                                #日志
 import unittest
 import HTMLTestRunner
 import assertpy
@@ -73,9 +72,16 @@ class client(unittest.TestCase,conf_sys):
 			try:
 				assertpy.assert_that(e).contains('HealthServiceException')
 			except:
-				raise TypeError('Network Error')
+				try:
+					assertpy.assert_that(e).contains('HTTP')
+				except:
+					raise TypeError('ICE Error')
+				else:
+					print ex.message
+					raise TypeError('HTTP ERROR')
 			else:
-				raise TypeError('HealthServiceException')
+				print(e)
+
 
 	def test_updateAccount(self):
 		#main
@@ -138,9 +144,16 @@ class client(unittest.TestCase,conf_sys):
 			try:
 				assertpy.assert_that(e).contains('HealthServiceException')
 			except:
-				raise TypeError('Network Error')
+				try:
+					assertpy.assert_that(e).contains('HTTP')
+				except:
+					raise TypeError('ICE Error')
+				else:
+					print ex.message
+					raise TypeError('HTTP ERROR')
 			else:
-				raise TypeError('HealthServiceException')
+				print(e)
+
 
 
 	def test_getRecipeListByDeviceID(self):
@@ -155,9 +168,16 @@ class client(unittest.TestCase,conf_sys):
 			try:
 				assertpy.assert_that(e).contains('HealthServiceException')
 			except:
-				raise TypeError('Network Error')
+				try:
+					assertpy.assert_that(e).contains('HTTP')
+				except:
+					raise TypeError('ICE Error')
+				else:
+					print ex.message
+					raise TypeError('HTTP ERROR')
 			else:
-				raise TypeError('HealthServiceException')
+				print(e)
+
 
 	def test_getphotoBydeviceID(self):
 		#main
@@ -171,9 +191,16 @@ class client(unittest.TestCase,conf_sys):
 			try:
 				assertpy.assert_that(e).contains('HealthServiceException')
 			except:
-				raise TypeError('Network Error')
+				try:
+					assertpy.assert_that(e).contains('HTTP')
+				except:
+					raise TypeError('ICE Error')
+				else:
+					print ex.message
+					raise TypeError('HTTP ERROR')
 			else:
-				raise TypeError('HealthServiceException')
+				print(e)
+
 
 
 	def test_getUserNameByUserID(self):
@@ -187,9 +214,16 @@ class client(unittest.TestCase,conf_sys):
 			try:
 				assertpy.assert_that(e).contains('HealthServiceException')
 			except:
-				raise TypeError('Network Error')
+				try:
+					assertpy.assert_that(e).contains('HTTP')
+				except:
+					raise TypeError('ICE Error')
+				else:
+					print ex.message
+					raise TypeError('HTTP ERROR')
 			else:
-				raise TypeError('HealthServiceException')
+				print(e)
+
 
 	def test_checkBindStateByDeviceID(self):
 		#main
@@ -202,9 +236,16 @@ class client(unittest.TestCase,conf_sys):
 			try:
 				assertpy.assert_that(e).contains('HealthServiceException')
 			except:
-				raise TypeError('Network Error')
+				try:
+					assertpy.assert_that(e).contains('HTTP')
+				except:
+					raise TypeError('ICE Error')
+				else:
+					print ex.message
+					raise TypeError('HTTP ERROR')
 			else:
-				raise TypeError('HealthServiceException')
+				print(e)
+
 
 	def test_messageNotify(self):
 		#main
@@ -251,9 +292,16 @@ class client(unittest.TestCase,conf_sys):
 			try:
 				assertpy.assert_that(e).contains('HealthServiceException')
 			except:
-				raise TypeError('Network Error')
+				try:
+					assertpy.assert_that(e).contains('HTTP')
+				except:
+					raise TypeError('ICE Error')
+				else:
+					print ex.message
+					raise TypeError('HTTP ERROR')
 			else:
-				raise TypeError('HealthServiceException')
+				print(e)
+
 
 	def test_getAllServices(self):
 		#main
@@ -266,9 +314,16 @@ class client(unittest.TestCase,conf_sys):
 			try:
 				assertpy.assert_that(e).contains('HealthServiceException')
 			except:
-				raise TypeError('Network Error')
+				try:
+					assertpy.assert_that(e).contains('HTTP')
+				except:
+					raise TypeError('ICE Error')
+				else:
+					print ex.message
+					raise TypeError('HTTP ERROR')
 			else:
-				raise TypeError('HealthServiceException')
+				print(e)
+
 
 
 	def test_getUsingServices(self):
@@ -282,9 +337,16 @@ class client(unittest.TestCase,conf_sys):
 			try:
 				assertpy.assert_that(e).contains('HealthServiceException')
 			except:
-				raise TypeError('Network Error')
+				try:
+					assertpy.assert_that(e).contains('HTTP')
+				except:
+					raise TypeError('ICE Error')
+				else:
+					print ex.message
+					raise TypeError('HTTP ERROR')
 			else:
-				raise TypeError('HealthServiceException')
+				print(e)
+
 
 
 	def test_getFamilyPoints(self):
@@ -298,9 +360,16 @@ class client(unittest.TestCase,conf_sys):
 			try:
 				assertpy.assert_that(e).contains('HealthServiceException')
 			except:
-				raise TypeError('Network Error')
+				try:
+					assertpy.assert_that(e).contains('HTTP')
+				except:
+					raise TypeError('ICE Error')
+				else:
+					print ex.message
+					raise TypeError('HTTP ERROR')
 			else:
-				raise TypeError('HealthServiceException')
+				print(e)
+
 
 	def test_getPointsHistory(self):
 		#main
@@ -313,9 +382,16 @@ class client(unittest.TestCase,conf_sys):
 			try:
 				assertpy.assert_that(e).contains('HealthServiceException')
 			except:
-				raise TypeError('Network Error')
+				try:
+					assertpy.assert_that(e).contains('HTTP')
+				except:
+					raise TypeError('ICE Error')
+				else:
+					print ex.message
+					raise TypeError('HTTP ERROR')
 			else:
-				raise TypeError('HealthServiceException')
+				print(e)
+
 
 	def test_serviceCardLoginByAccount(self):
 		#main
@@ -329,9 +405,16 @@ class client(unittest.TestCase,conf_sys):
 			try:
 				assertpy.assert_that(e).contains('HealthServiceException')
 			except:
-				raise TypeError('Network Error')
+				try:
+					assertpy.assert_that(e).contains('HTTP')
+				except:
+					raise TypeError('ICE Error')
+				else:
+					print ex.message
+					raise TypeError('HTTP ERROR')
 			else:
-				raise TypeError('HealthServiceException')
+				print(e)
+
 
 
 	def test_getPurchasedServices(self):
@@ -344,9 +427,16 @@ class client(unittest.TestCase,conf_sys):
 			try:
 				assertpy.assert_that(e).contains('HealthServiceException')
 			except:
-				raise TypeError('Network Error')
+				try:
+					assertpy.assert_that(e).contains('HTTP')
+				except:
+					raise TypeError('ICE Error')
+				else:
+					print ex.message
+					raise TypeError('HTTP ERROR')
 			else:
-				raise TypeError('HealthServiceException')
+				print(e)
+
 
 	def test_getHealthControllerRemindByDeviceId(self):
 		#main
@@ -359,9 +449,16 @@ class client(unittest.TestCase,conf_sys):
 			try:
 				assertpy.assert_that(e).contains('HealthServiceException')
 			except:
-				raise TypeError('Network Error')
+				try:
+					assertpy.assert_that(e).contains('HTTP')
+				except:
+					raise TypeError('ICE Error')
+				else:
+					print ex.message
+					raise TypeError('HTTP ERROR')
 			else:
-				raise TypeError('HealthServiceException')
+				print(e)
+
 
 	def test_getHealthControllerRemindByDevice(self):
 		#main
@@ -374,9 +471,16 @@ class client(unittest.TestCase,conf_sys):
 			try:
 				assertpy.assert_that(e).contains('HealthServiceException')
 			except:
-				raise TypeError('Network Error')
+				try:
+					assertpy.assert_that(e).contains('HTTP')
+				except:
+					raise TypeError('ICE Error')
+				else:
+					print ex.message
+					raise TypeError('HTTP ERROR')
 			else:
-				raise TypeError('HealthServiceException')
+				print(e)
+
 
 	def test_sendMessageToManager(self):
 		#main
@@ -412,9 +516,16 @@ class client(unittest.TestCase,conf_sys):
 			try:
 				assertpy.assert_that(e).contains('HealthServiceException')
 			except:
-				raise TypeError('Network Error')
+				try:
+					assertpy.assert_that(e).contains('HTTP')
+				except:
+					raise TypeError('ICE Error')
+				else:
+					print ex.message
+					raise TypeError('HTTP ERROR')
 			else:
-				raise TypeError('HealthServiceException')
+				print(e)
+
 
 
 if __name__ == "__main__":

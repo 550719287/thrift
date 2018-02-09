@@ -1239,7 +1239,7 @@ if __name__ == "__main__":
 				suite36,suite37]
 
 	suite = unittest.TestSuite(suite_all) 
-	fr = open(localaddr,'wb')
+	fr = open(localaddr_branch,'wb')
 	runner = HTMLTestRunner.HTMLTestRunner(stream=fr,title='测试报告',description='测试报告详情')
 	runner.run(suite)
 	# unittest.TextTestRunner(verbosity=2).run(suite37)

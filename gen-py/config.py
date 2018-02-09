@@ -14,7 +14,8 @@ import assertpy
 import unittest
 
 #报告路径
-localaddr = 'D:\\Report_ikeepertest.html'
+localaddr = 'D:\\Report_ikeepertest_main.html'
+localaddr_branch = 'D:\\Report_ikeepertest_branch.html'
 
 
 #接口地址配置

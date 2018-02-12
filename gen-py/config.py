@@ -130,3 +130,21 @@ class conf_param(object):
 		familyid = conf_sys().client.checkBindStateByDeviceID(mac).familyId
 		return familyid
 
+
+	def random(self,min,max):
+		mem = []
+		use = 0
+		for a in range(min,max):
+
+			while a not in mem:
+
+				use = a
+				mem.append(a)
+				break
+			else:
+				break
+			break
+
+		return use
+
+

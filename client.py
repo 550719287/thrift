@@ -10,15 +10,13 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 sys.path.append('D:/thrift/gen-py')  
 from ttypes import *
+from config import *
 import UserService
 import traceback
-import logging                                #日志
 import unittest
-import HTMLTestRunner
 import assertpy
-from config import *
-
-
+import HTMLTestRunner                         #报表
+import logging                                #日志
 
 class client(unittest.TestCase,conf_sys):
 
@@ -249,16 +247,26 @@ class client(unittest.TestCase,conf_sys):
 
 	def test_messageNotify(self):
 		#main
-		msg = MessageInfo()
 		time1 = int(time.time())
 		msgtime = str(time1)
-		msg.fromPerson = 'M5A1CFEDBE4B09F03008C774D'
-		msg.toPerson = 'M55FA54FBE4B0BB9D487A7D17'
-		msg.messageTime = msgtime
-		msg.messageType = '1'
-		msg.messageContent = '123sgfdg'
-		msg.serviceid = ''
-		msg.deviceid = ''
+		msg = MessageInfo(
+			fromPerson = 'M5A1CFEDBE4B09F03008C774D',
+			toPerson = 'M55FA54FBE4B0BB9D487A7D17',
+			messageTime = msgtime,
+			messageType = '1',
+			messageContent = '123sgfdg',
+			serviceid = '',
+			deviceid = ''
+			)
+		# msg = {
+		# 	'fromPerson' : 'M5A1CFEDBE4B09F03008C774D',
+		# 	'toPerson' : 'M55FA54FBE4B0BB9D487A7D17',
+		# 	'messageTime' : msgtime,
+		# 	'messageType' : '1',
+		# 	'messageContent' : '123sgfdg',
+		# 	'serviceid' : '',
+		# 	'deviceid' : '',
+		# }
 
 		try:
 			print msg
